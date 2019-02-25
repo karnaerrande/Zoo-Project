@@ -20,8 +20,12 @@ cur=db.cursor()
 def home():
     return render_template("home.html")
 
-#backend
 
+#backend
+#@app.route('/')
+#def allAnimals():
+    #arr
+    #return jsonify(arr);
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
