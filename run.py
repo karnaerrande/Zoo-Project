@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 import MySQLdb
 
 #create flask object, __name__ is the name of module
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='/static')
         
 #MYSQL Config
 db = MySQLdb.connect(
@@ -20,13 +20,17 @@ cur=db.cursor()
 def home():
     return render_template("index.html")
 
+@app.route('/map')
+def map():
+    return render_template("map.html")
 
+@app.route('/events')
+def events():
+    return render_template("events.html")
 
-#backend
-#@app.route('/')
-#def allAnimals():
-    #arr
-    #return jsonify(arr);
+@app.route('/animals')
+def animals():
+    return render_template("animals.html")
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':

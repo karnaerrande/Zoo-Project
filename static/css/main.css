@@ -1,24 +1,8 @@
-#navbar{
-    background-color:#3ead6a;
-    
+div.w3-bar{
+    top:0;
+    position:sticky;
+    z-index:100;
 }
-a.nav-item{
-    text-align:center;
-    color:#ffffff;
-    display: block;
-    height: 100%;
-    width: 100%;
-    padding:7%;
-    text-decoration: none;
-}
-a.nav-item:hover{
-    background-color:#46ce7c;
-    color:#ffffff;
-    text-decoration: none;
-}
-
-#my-title{
-    padding: 30px;
-    background-color:#39a062;
-    color:#ffffff;
+div.w3-light-green{
+    padding:5%;
 }
