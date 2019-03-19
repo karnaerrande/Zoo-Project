@@ -36,7 +36,7 @@ def animals():
 #backend
 @app.route('/allanimals')
 def allanimals():
-    
+    return 0;
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
