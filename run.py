@@ -10,7 +10,7 @@ db = MySQLdb.connect(
     host="127.0.0.1",
     user="root",
     passwd="root",
-    db="uni"
+    db="applegatezoo"
     )
 
 cur=db.cursor()
@@ -32,6 +32,13 @@ def events():
 def animals():
     return render_template("animals.html")
 
+
+#backend
+@app.route('/allanimals')
+def allanimals():
+    
+
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
+
