@@ -1,3 +1,5 @@
+alert(3);
+
 window.onscroll = function() {stickyHeader()};
 
 // Get the header

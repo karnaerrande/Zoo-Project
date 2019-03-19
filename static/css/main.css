@@ -7,19 +7,19 @@ div.w3-light-green{
     padding:5%;
 }
 
-.header {
+div.header {
   padding: 0px 166px;
   background-color:rgb(34,139,34);
   color: "black";
 }
-.content {
+div.content {
   padding: 160px;
 }
-.sticky {
+div.sticky {
   position: fixed;
   top: 0;
   width: 100%
 }
-.sticky + .content {
+div.sticky + div.content {
   padding-top: 102px;
 }
