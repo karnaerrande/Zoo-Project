@@ -6,3 +6,20 @@ div.w3-bar{
 div.w3-light-green{
     padding:5%;
 }
+
+.header {
+  padding: 0px 166px;
+  background-color:rgb(34,139,34);
+  color: "black";
+}
+.content {
+  padding: 160px;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+.sticky + .content {
+  padding-top: 102px;
+}
