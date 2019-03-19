@@ -15,7 +15,13 @@
         <script>
             
             $(document).ready(function(){
-                
+                 // Check for click events on the navbar burger icon
+                $(".navbar-burger").click(function() {
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    $(".navbar-burger").toggleClass("is-active");
+                    $(".navbar-menu").toggleClass("is-active");
+                    
+                });
             });
         </script>
         
@@ -25,19 +31,59 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-        <!-- Navigation -->
-        <div class="w3-bar w3-bottombar w3-border-light-green w3-card w3-green row w3-round">
-                <a href="/" class="w3-bar-item w3-button w3-green w3-left ">Applegate Park Zoo</a>
-                <button id="show-nav" class="w3-bar-item w3-button w3-green w3-right">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <div id="var-links" >
-                    <a href="/map" class="w3-bar-item w3-button w3-mobile">Map</a>
-                    <a href="/events" class="w3-bar-item w3-button w3-mobile">Events</a>
-                    <a href="/animals" class="w3-bar-item w3-button w3-mobile">Animals</a>
+    <body>
+    
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="https://bulma.io">
+                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+            <a class="navbar-item">
+                Home
+            </a>
+
+            <a class="navbar-item">
+                Documentation
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                More
+                </a>
+
+                <div class="navbar-dropdown">
+                <a class="navbar-item">
+                    About
+                </a>
+                <a class="navbar-item">
+                    Jobs
+                </a>
+                <a class="navbar-item">
+                    Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                    Report an issue
+                </a>
                 </div>
-                
+            </div>
+            </div>
+
+           
         </div>
+        </nav>
+    
+       
         
         <div style="text-align:center;">
             <h1>Applegate Park Zoo</h1>
@@ -71,7 +117,8 @@
         </div>
 
         <div class="w3-panel w3-light-green w3-round-xlarge">
-                <p>
+                <p> Applegate Park Zoo
+
                 Applegate Park Zoo has been home to many wild animals which, due to injuries or other conditions, could not be released to the wild or were surplus animals from other zoos. A regional theme has been adopted by the zoo, focusing on native species of animals and plants of the Central San Joaquin Valley and the nearby Sierra Nevada Mountains. 
                 </p>
         </div>
@@ -91,15 +138,15 @@
         <hr>
         
         <footer>
-            <div style="padding:1%;" class="w3-row">
-                <div style="text-align:left;" class="w3-half">
+            <div style="padding:1%;" class="columns">
+                <div style="text-align:left;" class="column">
                     Applegate Park Zoo
                     <span><br></span>
                     (209) 725-3337
                     <span><br></span>
                     1045 W 25th St., Merced, CA 95340
                 </div>
-                <div style="text-align:right;" class="w3-half">
+                <div style="text-align:right;" class="column">
                     Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization. 
 
                 </div>
