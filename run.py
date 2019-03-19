@@ -32,6 +32,9 @@ def events():
 def animals():
     return render_template("animals.html")
 
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
 
 #backend
 @app.route('/allanimals')
