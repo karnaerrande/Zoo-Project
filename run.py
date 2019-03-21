@@ -4,7 +4,7 @@ import MySQLdb
 
 #create flask object, __name__ is the name of module
 app = Flask(__name__,static_url_path='/static')
-        
+
 #MYSQL Config
 db = MySQLdb.connect(
     host="127.0.0.1",
@@ -32,6 +32,9 @@ def events():
 def animals():
     return render_template("animals.html")
 
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
 
 #backend
 @app.route('/allanimals')

@@ -4,14 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        
-        
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css"> 
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+        <!-- <link rel="stylesheet" href="../static/css/debug.css"> -->
+        <link rel="stylesheet" href="../static/css/main.css">
+        <script src="../static/js/main.js"></script>
+
+
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+
         <script>
 
             $(document).ready(function(){
@@ -20,18 +23,18 @@
                     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                     $(".navbar-burger").toggleClass("is-active");
                     $(".navbar-menu").toggleClass("is-active");
-                    
+
                 });
             });
         </script>
-        
-        
+
+
         <title>Applegate Zoo</title>
          <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-    
+
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://bulma.io">
@@ -47,25 +50,65 @@
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="index.html">
                         Home
                     </a>
 
-                    <a class="navbar-item">
-                        Documentation
+                    <a class="navbar-item" href="events.html">
+                        Events
                     </a>
 
-                   
-                </div>
-                
-            </div>
+                    <a class="navbar-item" href="map.html">
+                        Map
+                    </a>
 
+                    <a class="navbar-item" href="animals.html">
+                        Animals
+                    </a>
+
+                    <a class="navbar-item" href="contact.html">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
             </div>
         </nav>
-        
-        
-        
-        
+
+
+
+        <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" title="This is the first page" disabled>Previous Page</a>
+        <a class="pagination-next">Next Page</a>
+        <ul class="pagination-list">
+          <li>
+            <a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a>
+          </li>
+          <li>
+            <a class="pagination-link" aria-label="Goto page 2">2</a>
+          </li>
+          <li>
+            <a class="pagination-link" aria-label="Goto page 3">3</a>
+          </li>
+        </ul>
+      </nav>
+
+
+        <hr>
+        <footer>
+            <div style="padding:1%;" class="columns">
+                <div style="text-align:left;" class="column">
+                    Applegate Park Zoo
+                    <span><br></span>
+                    (209) 725-3337
+                    <span><br></span>
+                    1045 W 25th St., Merced, CA 95340
+                </div>
+
+                <div style="text-align:right;" class="column">
+                    Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization.
+                </div>
+        </footer>
+
     </body>
-    
+
 </html>
