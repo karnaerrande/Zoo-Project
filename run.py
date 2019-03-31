@@ -36,10 +36,17 @@ def animals():
 def contact():
     return render_template("contact.html")
 
+@app.route('/admin')
+def admin():
+    return render_template("admin.html");
+
+
 #backend
 @app.route('/allanimals')
 def allanimals():
     return 0;
+
+#add routes for getting, removing, and adding animals
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
