@@ -44,9 +44,52 @@ def admin():
 #backend
 @app.route('/allanimals')
 def allanimals():
-    return 0;
+    query="SELECT * FROM animals;"
+    cur.execute(query)
+    anlist=cur.fetchall()
+
+    jsonlist = []
+
+    for entry in anlist:
+        anid = entry[0]
+        anname = entry[1]
+
+        rec = {"idanimal":anid,"nameanimal":anname}
+
+        jsonlist.append(rec) 
+
+    return jsonify(jsonlist);
 
 #add routes for getting, removing, and adding animals
+@app.route('/get')
+def getAnim(id):
+    id = request.args.get('id')
+    query="SELECT * FROM animals WHERE idanimal="+id+";"
+    cur.execute(query)
+    anlist=cur.fetchall()
+
+    jsonlist = []
+
+    for entry in anlist:
+        anid = entry[0]
+        anname = entry[1]
+
+        rec = {"idanimal":anid,"nameanimal":anname}
+
+        jsonlist.append(rec) 
+
+    return jsonify(jsonlist);
+
+@app.route('/remove')
+def removeAnim(id):
+    id = request.args.get('id')
+    query="DELETE FROM animals WHERE idanimal="+id+";"
+    return 0;
+
+def addAnim(name):
+    id = request.args.get('name')
+    query="INSERT INTO `applegatezoo`.`animals`(`nameanimal`) VALUES (\'"+name+"\');"
+    return 0;
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
