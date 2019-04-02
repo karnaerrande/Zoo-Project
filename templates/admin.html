@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <script>
-        
             $(document).ready(function(){
                  // Check for click events on the navbar burger icon
                 $(".navbar-burger").click(function() {
@@ -24,16 +23,16 @@
                 });
             });
             
-            function getAnim(idAnim){
-            
-            }
-            
             function addAnim(animal){
-            
+                $.get("http://localhost:5000/addAnim?name="+animal+"", {}, function(response){
+                
+                }
             }
             
             function removeAnim(idAnim){
-            
+                $.get("http://localhost:5000/remove?id="+idAnim+"", {}, function(response){
+                
+                }
             }
             
         </script>
