@@ -31,7 +31,8 @@ def events():
 
 @app.route('/animals')
 def animals():
-    return render_template("animals.html")
+    myanimals = allanimals()
+    return render_template("animals.html", myanimals=myanimals)
 
 @app.route('/contact')
 def contact():
@@ -39,7 +40,8 @@ def contact():
 
 @app.route('/admin')
 def admin():
-    return render_template("admin.html");
+    
+    return render_template("admin.html")
 
 
 #backend
@@ -59,11 +61,10 @@ def allanimals():
 
         jsonlist.append(rec)
 
-    return jsonify(jsonlist);
+    return jsonify(jsonlist)
 
-#add routes for getting, removing, and adding animals
 @app.route('/get')
-def getAnim(id):
+def getAnim():
     id = request.args.get('id')
     query="SELECT * FROM animals WHERE idanimal="+id+";"
     cur.execute(query)
@@ -79,18 +80,21 @@ def getAnim(id):
 
         jsonlist.append(rec)
 
-    return jsonify(jsonlist);
+    return jsonify(jsonlist)
 
 @app.route('/remove')
-def removeAnim(id):
+def removeAnim():
     id = request.args.get('id')
     query="DELETE FROM animals WHERE idanimal="+id+";"
-    return 0;
+    cur.execute(query)
+    return cur.fetchall()
 
-def addAnim(name):
-    id = request.args.get('name')
-    query="INSERT INTO `applegatezoo`.`animals`(`nameanimal`) VALUES (\'"+name+"\');"
-    return 0;
+@app.route('/addAnim')
+def addAnim():
+    name = request.args.get('name')
+    query="INSERT INTO animals (nameanimal) VALUES (\'"+name+"\');"
+    cur.execute(query)
+    return cur.fetchall()
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
