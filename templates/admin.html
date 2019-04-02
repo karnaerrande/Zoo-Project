@@ -4,10 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
+        <link rel="stylesheet" href="../static/css/main.css">
+        <script src="../static/js/main.js"></script>
 
-
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -19,7 +21,7 @@
                     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                     $(".navbar-burger").toggleClass("is-active");
                     $(".navbar-menu").toggleClass("is-active");
-            
+
                 });
             });
             
@@ -27,14 +29,16 @@
                 $.get("http://localhost:5000/addAnim?name="+animal+"", {}, function(response){
                 
                 }
+
             }
-            
+
             function removeAnim(idAnim){
                 $.get("http://localhost:5000/remove?id="+idAnim+"", {}, function(response){
                 
                 }
+
             }
-            
+
         </script>
 
 
@@ -79,35 +83,48 @@
             </div>
             </div>
         </nav>
-        
-        <section class="section is-mobile ">
-            <h1 style="text-align:center;">Web maintanence page</h1>
-            <div class="card-header" id="site-info">
-                <header class="card-header">
-                    <p class="card-header-title">Site Info</p>
-                    <a href="#" class="card-header-icon">
-                        <span class="icon">
-                            <i class="fa fa-angle-down"></i>
-                        </span>
-                    </a>
-                </header>
-            </div>
-            
-            <div id="add-anim">
-                
-                <div class="container">
-                </div>
-            </div>
 
-            <div id="rm-anim">
-            
-                <div class="container">
-                </div>
-            </div>
+        <section class="section is-mobile" style="padding-top:70px">
+          <div class="container">
+            <h1 class="center is-size-2">
+              Admin Page
+            </h1>
+            <p class="subtitle center">
+              <i>Please Enter Your Credentials in order to continue</i>
+            </p>
+          </div>
+        </section>
 
+        <section class="section is-mobile has-background-light">
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left">
+              <input class="input" type="text" name="Username" placeholder="Admin123">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" placeholder="Password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+
+          <div class="field">
+            <p class="control">
+              <button class="button is-success">
+                Login
+              </button>
+            </p>
+          </div>
 
         </section>
-        
+
         <hr>
         <footer>
             <div style="padding:1%;" class="columns">
