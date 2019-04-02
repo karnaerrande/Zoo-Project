@@ -8,7 +8,7 @@ app = Flask(__name__,static_url_path='/static')
 
 #MYSQL Config
 db = MySQLdb.connect(
-    host="127.0.0.1",
+    host="10.34.84.35",
     user="root",
     passwd="root",
     db="applegatezoo"
@@ -57,7 +57,7 @@ def allanimals():
 
         rec = {"idanimal":anid,"nameanimal":anname}
 
-        jsonlist.append(rec) 
+        jsonlist.append(rec)
 
     return jsonify(jsonlist);
 
@@ -77,7 +77,7 @@ def getAnim(id):
 
         rec = {"idanimal":anid,"nameanimal":anname}
 
-        jsonlist.append(rec) 
+        jsonlist.append(rec)
 
     return jsonify(jsonlist);
 
