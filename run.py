@@ -8,7 +8,7 @@ app = Flask(__name__,static_url_path='/static')
 
 #MYSQL Config
 db = MySQLdb.connect(
-    host="10.34.84.35",
+    host="10.34.84.35:3306",
     user="root",
     passwd="root",
     db="applegatezoo"
