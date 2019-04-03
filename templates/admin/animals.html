@@ -127,8 +127,115 @@
         <section class="section is-mobile">
           <div class="container">
             <h1 class="center is-size-2">
-              <i>Help</i>
+              <i>Animals</i>
             </h1>
+          </div>
+        </section>
+
+        <!-- add all the animals -->
+
+        <section class="section">
+          <div class="container">
+            <h1 class="center is-size-2">
+              Add an Animal
+            </h1>
+          </div>
+        </section>
+
+        <section class="section has-background-light">
+          <div class="container">
+
+            <div class="field">
+              <label class="label">Full Animal Name</label>
+              <div class="control has-icons-left">
+                <input class="input" type="text" name="AnimalName" placeholder="e.g. American Black Bear">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+            </div>
+
+            <div class="field is-horizontal">
+              <div class="field-label is-normal">
+                <label class="label">Event Specifics</label>
+              </div>
+              <div class="field-body">
+                <div class="field">
+                  <p class="control is-expanded has-icons-left">
+                    <input class="input" type="text" name="Location" placeholder="Location e.g. Area 1">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-search-location"></i>
+                    </span>
+                  </p>
+                  <div class="help">
+                    <span class="icon has-text-info" style="vertical-align:top; display: inline-block">
+                      <i class="fas fa-info-circle fa-lg"></i>
+                    </span>
+                    Location corresponding to the Zoo Map
+                  </div>
+                </div>
+                <div class="field">
+                  <!-- <label class="label">Type of Event</label> -->
+                  <div class="control is-expanded">
+                    <div class="select">
+                      <select>
+                        <option>Conservation Status</option>
+                        <option>Safe</option>
+                        <option>Almost Endangered</option>
+                        <option>Endangered</option>
+                        <option>Extinct</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Description</label>
+              <div class="control">
+                <textarea class="textarea" name="description" placeholder="e.g. The American black bear is a medium-sized bear native to North America. It is the continent's smallest and most widely distributed bear species. American black bears are omnivores, with their diets varying greatly depending on season and location."></textarea>
+              </div>
+            </div>
+
+            <br>
+            <div class="field">
+              <p class="control">
+                <button class="button is-primary" type="button" name="submit">Submit</button>
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="section is-mobile">
+          <div class="container">
+            <h1 class="center is-size-2">
+              Remove an Animal
+            </h1>
+          </div>
+        </section>
+
+        <section class="section is-mobile has-background-light">
+          <div class="container">
+
+            <div class="field">
+              <label class="label">Remove by Animal Name</label>
+              <div class="control has-icons-left">
+                <input class="input" type="text" name="EventName" placeholder="e.g. American Black Bear">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-paw"></i>
+                </span>
+              </div>
+            </div>
+
+            <br>
+            <div class="field">
+              <p class="control">
+                <button class="button is-primary" type="button" name="submit">Submit</button>
+              </p>
+            </div>
+
           </div>
         </section>
 
