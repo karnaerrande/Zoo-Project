@@ -1,0 +1,9 @@
+{
+	"id":an-id,
+	"name":a-name,
+	"conservation-status":status,
+	"scientific-name":sci-name,
+	"location":loc,
+	"description":desc,
+
+}

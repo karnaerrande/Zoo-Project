@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta chatset="utf-8">
+        <title>Applegate Zoo</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <script src="{{ url_for('static', filename='js/main.js') }"></script>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        {% block nav %}
+            <nav class="navbar is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <i class="fa fa-home"></i>
+                    </a>
+    
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+    
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+    
+                        <a class="navbar-item" href="/events">
+                            Events
+                        </a>
+    
+                        <a class="navbar-item" href="/map">
+                            Map
+                        </a>
+    
+                        <a class="navbar-item" href="/animals">
+                            Animals
+                        </a>
+    
+                        <a class="navbar-item" href="/contact">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </nav>
+        {% endblock %}
+
+        {% block body %}{% endblock %}
+        
+        
+            {% block footer %}
+            <div style="padding:1%;" class="columns">
+                    <div style="text-align:left;" class="column">
+                        Applegate Park Zoo
+                        <span><br></span>
+                        (209) 725-3337
+                        <span><br></span>
+                        1045 W 25th St., Merced, CA 95340
+                    </div>
+
+                    <div style="text-align:right;" class="column">
+                        Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization.
+                    </div>
+            {% endblock%}
+        </footer>
+    </body>
+
+
+
+</html>

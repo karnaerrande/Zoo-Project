@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, jsonify
 
-import MySQLdb
+from flask_mysqldb import MySQL
 
 #create flask object, __name__ is the name of module
 app = Flask(__name__,static_url_path='/static')
 
 #MYSQL Config
 db = MySQLdb.connect(
-    host="10.34.84.35",
+    host="127.0.0.1",
     user="root",
     passwd="root",
     db="applegatezoo"
@@ -63,9 +63,8 @@ def allanimals():
 
     return jsonify(jsonlist)
 
-@app.route('/get')
-def getAnim():
-    id = request.args.get('id')
+@app.route('/get/<string:id>')
+def getAnim(id):
     query="SELECT * FROM animals WHERE idanimal="+id+";"
     cur.execute(query)
     anlist=cur.fetchall()
@@ -82,19 +81,41 @@ def getAnim():
 
     return jsonify(jsonlist)
 
-@app.route('/remove')
-def removeAnim():
-    id = request.args.get('id')
-    query="DELETE FROM animals WHERE idanimal="+id+";"
+@app.route('/remove/<string:id>')
+def removeAnim(id):
+    query="DELETE FROM animals WHERE idanimal = "+id+";"
     cur.execute(query)
     return cur.fetchall()
 
-@app.route('/addAnim')
-def addAnim():
-    name = request.args.get('name')
+@app.route('/addAnim/<string:name>')
+def addAnim(name):
     query="INSERT INTO animals (nameanimal) VALUES (\'"+name+"\');"
     cur.execute(query)
     return cur.fetchall()
+
+def removeAnimalFolder(name):
+    try:
+        if os.path.exists('./static/animals/'+name):
+            shutil.rmtree('./static/animals/'+name)
+    except OSError:
+        print('Unable to remove the directory at ./static/animals/'+name)
+
+def createAnimalFolder(name):
+    try:
+        if not os.path.exists('./static/animals/'+name):
+            os.makedirs('./static/animals/'+name)
+    except OSError:
+        print('Couldn\'t create directory at ./static/animals/'+name)
+
+def generateLocalAnim(animal, image):
+    #load content into folder "/static/animals/"+animal
+    createAnimalFolder(animal.name)
+    return 0
+
+def removeLocalAnim(animal, image):
+    #delete contenet and folder in "/static/animals/"+animal
+    removeAnimalFolder(animal.name)
+    return 0
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
