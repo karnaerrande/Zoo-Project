@@ -1,10 +1,12 @@
 #!/usr/bin/env python
+#from flask_cors import CORS
 from flask import Flask, render_template, request, jsonify
 
 import MySQLdb
 
 #create flask object, __name__ is the name of module
 app = Flask(__name__,static_url_path='/static')
+# cors = CORS(app)
 
 #MYSQL Config
 db = MySQLdb.connect(
@@ -40,7 +42,7 @@ def contact():
 
 @app.route('/admin')
 def admin():
-    
+
     return render_template("admin.html")
 
 
