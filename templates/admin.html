@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <script>
+           
+            
             $(document).ready(function(){
                  // Check for click events on the navbar burger icon
                 $(".navbar-burger").click(function() {
@@ -25,20 +27,6 @@
                 });
             });
             
-            function addAnim(animal){
-                $.get("http://localhost:5000/addAnim?name="+animal+"", {}, function(response){
-                
-                }
-
-            }
-
-            function removeAnim(idAnim){
-                $.get("http://localhost:5000/remove?id="+idAnim+"", {}, function(response){
-                
-                }
-
-            }
-
         </script>
 
 
@@ -84,45 +72,78 @@
             </div>
         </nav>
 
-        <section class="section is-mobile" style="padding-top:70px">
-          <div class="container">
-            <h1 class="center is-size-2">
-              Admin Page
-            </h1>
-            <p class="subtitle center">
-              <i>Please Enter Your Credentials in order to continue</i>
-            </p>
-          </div>
-        </section>
+        <hr>
 
-        <section class="section is-mobile has-background-light">
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" name="Username" placeholder="Admin123">
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
+        <section class="section is-mobile">
+          <div style="padding:2%" class="card is-fullwidth">
+            <header class="card-header">
+              <p class="card-header-title">
+                Website Data
+              </p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                
+              </div>
             </div>
+            <footer class="card-footer">
+              <a href="#" class="card-footer-item">Save</a>
+              <a href="#" class="card-footer-item">Edit</a>
+              <a href="#" class="card-footer-item">Delete</a>
+            </footer>
           </div>
 
-          <div class="field">
-            <p class="control has-icons-left">
-              <input class="input" type="password" placeholder="Password">
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </p>
-          </div>
 
-          <div class="field">
-            <p class="control">
-              <button class="button is-success">
-                Login
-              </button>
-            </p>
-          </div>
+          <hr>
 
+          <div style="padding:2%" class="card is-fullwidth">
+            <header class="card-header">
+              <p class="card-header-title">
+                Add Animal
+              </p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                
+              </div>
+            </div>
+            <footer class="card-footer">
+              
+            </footer>
+          </div>
+          
+          <hr>
+          
+          <div style="padding:2%" class="card is-fullwidth">
+            <header class="card-header">
+              <p class="card-header-title">
+                Remove Animal
+              </p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                
+              </div>
+            </div>
+            <footer class="card-footer">
+              
+            </footer>
+          </div>
         </section>
 
         <hr>

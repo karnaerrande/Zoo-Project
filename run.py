@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, jsonify
-
-from flask_mysqldb import MySQL
+import MySQLdb, os, shutil
 
 #create flask object, __name__ is the name of module
 app = Flask(__name__,static_url_path='/static')
@@ -31,8 +30,7 @@ def events():
 
 @app.route('/animals')
 def animals():
-    myanimals = allanimals()
-    return render_template("animals.html", myanimals=myanimals)
+    return render_template("animals.html")
 
 @app.route('/contact')
 def contact():
@@ -83,12 +81,15 @@ def getAnim(id):
 
 @app.route('/remove/<string:id>')
 def removeAnim(id):
+    removeAnimalFolder(name)
     query="DELETE FROM animals WHERE idanimal = "+id+";"
     cur.execute(query)
     return cur.fetchall()
 
-@app.route('/addAnim/<string:name>')
-def addAnim(name):
+@app.route('/addAnim/<string:name>/<string:imgurl>')
+def addAnim(name, imgurl):
+    imgurl = "/static/animals/"+name+"/"+name+".png"
+    generateLocalAnim(name, imgurl)
     query="INSERT INTO animals (nameanimal) VALUES (\'"+name+"\');"
     cur.execute(query)
     return cur.fetchall()
@@ -110,11 +111,7 @@ def createAnimalFolder(name):
 def generateLocalAnim(animal, image):
     #load content into folder "/static/animals/"+animal
     createAnimalFolder(animal.name)
-    return 0
-
-def removeLocalAnim(animal, image):
-    #delete contenet and folder in "/static/animals/"+animal
-    removeAnimalFolder(animal.name)
+    
     return 0
 
 #if we run this file directly(python run.py), enter into debug mode
