@@ -27,6 +27,19 @@
                 });
             });
             
+            function addAnim(animal){
+                $.get("http://localhost:5000/addAnim?name="+animal+"", {}, function(response){
+
+                }
+
+            }
+
+            function removeAnim(idAnim){
+                $.get("http://localhost:5000/remove?id="+idAnim+"", {}, function(response){
+
+                }
+
+            }
         </script>
 
 
@@ -74,6 +87,7 @@
 
         <hr>
 
+
         <section class="section is-mobile">
           <div style="padding:2%" class="card is-fullwidth">
             <header class="card-header">
@@ -90,6 +104,7 @@
               <div class="content">
                 
               </div>
+
             </div>
             <footer class="card-footer">
               <a href="#" class="card-footer-item">Save</a>
@@ -143,6 +158,7 @@
             <footer class="card-footer">
               
             </footer>
+
           </div>
         </section>
 
