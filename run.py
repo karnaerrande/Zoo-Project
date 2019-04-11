@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #from flask_cors import CORS
 from flask import Flask, render_template, request, jsonify
-import MySQLdb, os, shutil
+import MySQLdb, os, shutil, json
 
 #create flask object, __name__ is the name of module
 app = Flask(__name__,static_url_path='/static')
@@ -55,9 +55,9 @@ def allanimals():
 
     for entry in anlist:
         anid = entry[0]
-        anname = entry[1]
+        name = entry[1]
 
-        rec = {"idanimal":anid,"nameanimal":anname}
+        rec = {"id_animal": anid,"name_animal": name}
 
         jsonlist.append(rec)
 
@@ -65,7 +65,7 @@ def allanimals():
 
 @app.route('/get/<string:id>')
 def getAnim(id):
-    query="SELECT * FROM animals WHERE idanimal="+id+";"
+    query="SELECT * FROM animals WHERE id_animal="+id+";"
     cur.execute(query)
     anlist=cur.fetchall()
 
@@ -73,9 +73,9 @@ def getAnim(id):
 
     for entry in anlist:
         anid = entry[0]
-        anname = entry[1]
+        name = entry[1]
 
-        rec = {"idanimal":anid,"nameanimal":anname}
+        rec = {"id_animal":anid,"name_animal":name}
 
         jsonlist.append(rec)
 
@@ -83,16 +83,7 @@ def getAnim(id):
 
 @app.route('/remove/<string:id>')
 def removeAnim(id):
-    removeAnimalFolder(name)
-    query="DELETE FROM animals WHERE idanimal = "+id+";"
-    cur.execute(query)
-    return cur.fetchall()
-
-@app.route('/addAnim/<string:name>/<string:imgurl>')
-def addAnim(name, imgurl):
-    imgurl = "/static/animals/"+name+"/"+name+".png"
-    generateLocalAnim(name, imgurl)
-    query="INSERT INTO animals (nameanimal) VALUES (\'"+name+"\');"
+    query="DELETE FROM animals WHERE id_animal = "+id+";"
     cur.execute(query)
     return cur.fetchall()
 
@@ -110,11 +101,25 @@ def createAnimalFolder(name):
     except OSError:
         print('Couldn\'t create directory at ./static/animals/'+name)
 
-def generateLocalAnim(animal, image):
-    #load content into folder "/static/animals/"+animal
-    createAnimalFolder(animal.name)
-    
-    return 0
+#backend
+@app.route("/process", methods =['GET','POST'])
+def process():
+    name = request.form.get('animal-name')
+    createAnimalFolder(name)
+    endangered = request.form.get("animal-end")
+    desc = request.form.get("animal-desc")
+    query="INSERT INTO animals (name_animal) VALUES (\'"+name+"\');"
+    cur.execute(query)
+    query="SELECT * FROM animals WHERE name_animal = \'"+name+"\';"
+    cur.execute(query)
+    animal = cur.fetchall() 
+    animal_id = animal[0]
+    myObj = {"id":animal_id, "name":name, "endangered": endangered, "description": desc}
+    data = jsonify(myObj)
+    jsfn = "./static/animals/"+name+"/"+name+".json"
+    with open(jsfn, 'w') as outfile:
+        json.dump(data, outfile)
+    return myObj
 
 #if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':

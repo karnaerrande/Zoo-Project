@@ -19,6 +19,7 @@
             
             $(document).ready(function(){
                  // Check for click events on the navbar burger icon
+                
                 $(".navbar-burger").click(function() {
                     // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
                     $(".navbar-burger").toggleClass("is-active");
@@ -27,19 +28,6 @@
                 });
             });
             
-            function addAnim(animal){
-                $.get("http://localhost:5000/addAnim?name="+animal+"", {}, function(response){
-
-                }
-
-            }
-
-            function removeAnim(idAnim){
-                $.get("http://localhost:5000/remove?id="+idAnim+"", {}, function(response){
-
-                }
-
-            }
         </script>
 
 
@@ -129,7 +117,27 @@
             </header>
             <div class="card-content">
               <div class="content">
-                
+                <form action="/process" method="POST" class="form-horizontal" >
+                  <fieldset>
+                  <!-- Text input-->
+                 
+                      <input id="animal-name" name="animal-name" type="text" placeholder="Name of animal" class="input ">
+                      
+
+                  <!-- Text input-->
+                 
+                      <input id="animal-end" name="animal-end" type="text" placeholder="True or False" class="input ">
+                      
+
+                  <!-- Textarea -->
+                                     
+                      <textarea class="textarea" id="animal-desc" name="animal-desc"></textarea>
+                    
+
+                  </fieldset>
+                  <input type= submit name='submit'>
+                </form>
+
               </div>
             </div>
             <footer class="card-footer">
