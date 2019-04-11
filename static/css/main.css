@@ -1,7 +1,81 @@
 .center {
-  display:flex;
+  /* display:flex; */
+  display: -webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
   justify-content: center;
   align-items: center;
   align-content: center;
   align-self: center;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.parallaxWhat {
+  background-image: url("../img/what.jpg");
+
+  height: 500px;
+
+  color: white;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallaxWho {
+  background-image: url("../img/who.jpg");
+
+  height: 500px;
+
+  color: white;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallaxMission {
+  background-image: url("../img/mission.jpg");
+
+  height: 500px;
+
+  color: white;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.parallaxMore {
+  background-image: url("../img/bear.jpg");
+
+  height: 500px;
+
+  color: white;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.column1 {
+  /* height: 200px; */
+  /* margin: 10px; */
+  text-align: center;
+  font-size: 2em;
+  color: white;
+-webkit-box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
+-moz-box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
+box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
+}
+
+.img2 {
+  /* background: url('https://images.unsplash.com/photo-1445295029071-5151176738d0?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375'); */
+  background-size: cover;
+  background-repeat: no-repeat;
 }
