@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block head %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <title>{% block title %}{%endblock%} - Applegate Zoo</title>
+
+        <script>
+            $(document).ready(function(){
+                
+            });
+        </script>
+        {% endblock %}
+    </head>
+
+    <body>
+        <div id="header" >
+            {% block header %}
+            <nav  class="navbar navbar-expand-lg sticky-top navbar-yellow navbar-light ">
+                <a style="font-size: 2em;" id = "brand" class="navbar-brand" href="/home">
+                    <i class = "fa fa-home"></i>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div style="text-align: right;" class="navbar-nav">
+                    <a class="nav-item nav-link" href="/events">Events <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="/map">Map</a>
+                    <a class="nav-item nav-link" href="/animals">Animals</a>
+                    <a class="nav-item nav-link" href="/contact">Contact Us</a>
+                  </div>
+                </div>
+              </nav>
+            {% endblock %}
+        </div>
+        <div class="container-fluid">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{category}}">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div id="footer">
+            
+            {% block footer %}
+                <!-- Footer -->
+                <footer class="page-footer font-small pt-4">
+                
+                <!-- Footer Links -->
+                <div class="container-fluid" >
+                    <!-- Content -->
+                    <h6>Applegate Park Zoo</h6>
+                    <h6>(209) 725-3337</h6>
+                    <h6>1045 W 25th St., Merced, CA 95340</h6>
+                        
+                </div>
+                <hr>
+                <div style="text-align:center;padding:2%;" class="container">Website operated by the Merced Zoological Society,
+                    a 501 (c)(3) organization. 
+                </div>
+            <!-- Copyright -->
+                
+                
+            
+            </footer>
+            <!-- Footer -->
+            {% endblock %}
+        </div>
+        <!-- (DEBUG) Live JS automatically reloads the webpage to retrieve changes -->
+        <script type="text/javascript" src="http://livejs.com/live.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+</html>
