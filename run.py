@@ -1,103 +1,63 @@
-#!/usr/bin/env python
-#from flask_cors import CORS
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, flash, redirect
+from flask_sqlalchemy import SQLAlchemy
+from forms import AnimalForm
 
-import MySQLdb
+app = Flask(__name__)
+app.config['SECRET_KEY']='tFXcmRsHfxl3kyaA4b59'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
-#create flask object, __name__ is the name of module
-app = Flask(__name__,static_url_path='/static')
-# cors = CORS(app)
+db = SQLAlchemy(app)
 
-#MYSQL Config
-db = MySQLdb.connect(
-    host="10.34.84.35:3306",
-    user="root",
-    passwd="root",
-    db="applegatezoo"
-    )
+class Animal(db.Model):
+    id_animal = db.Column(db.Integer, primary_key=True)
+    name_animal = db.Column(db.String(20), unique=True, nullable = False)
+    desc_animal = db.Column(db.String(2000), unique=True, nullable = False)
+    endangered_animal = db.Column(db.Boolean(), unique=False, nullable=False)
 
-cur=db.cursor()
+    def __repr__(self):
+        return "Animal('{}','{}')".format(self.id_animal,self.name_animal)
 
 #frontend
-@app.route('/')
+@app.route("/home")
+@app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", name="Karna")
 
-@app.route('/map')
-def map():
-    return render_template("map.html")
+@app.route("/admin/config", methods=['GET', 'POST'])
+def animconfig():
+    return 0
 
-@app.route('/events')
-def events():
-    return render_template("events.html")
+@app.route("/admin", methods =['GET','POST'])
+def admin():
+    allAnim=Animal.query.all()
+    animForm = AnimalForm()
+    if animForm.validate_on_submit():
+        temp = Animal(name_animal=animForm.name_animal.data,desc_animal=animForm.desc_animal.data,endangered_animal=animForm.endangered_animal.data)
+        db.session.add(temp)
+        db.session.commit()
+        flash('Animal created for {}!'.format(animForm.name_animal.data),'success')
+        return redirect("/admin")
+    return render_template("admin.html", animForm=animForm, allAnim=allAnim)
 
-@app.route('/animals')
+@app.route("/animals")
 def animals():
-    myanimals = allanimals()
-    return render_template("animals.html", myanimals=myanimals)
+    allAnim=Animal.query.all()
+    return render_template("animals.html", allAnim=allAnim)
 
-@app.route('/contact')
+@app.route("/contact")
 def contact():
     return render_template("contact.html")
 
-@app.route('/admin')
-def admin():
+@app.route("/events")
+def events():
+    return render_template("events.html")
 
-    return render_template("admin.html")
+@app.route("/map")
+def map():
+    return render_template("map.html")
 
 
-#backend
-@app.route('/allanimals')
-def allanimals():
-    query="SELECT * FROM animals;"
-    cur.execute(query)
-    anlist=cur.fetchall()
 
-    jsonlist = []
 
-    for entry in anlist:
-        anid = entry[0]
-        anname = entry[1]
-
-        rec = {"idanimal":anid,"nameanimal":anname}
-
-        jsonlist.append(rec)
-
-    return jsonify(jsonlist)
-
-@app.route('/get')
-def getAnim():
-    id = request.args.get('id')
-    query="SELECT * FROM animals WHERE idanimal="+id+";"
-    cur.execute(query)
-    anlist=cur.fetchall()
-
-    jsonlist = []
-
-    for entry in anlist:
-        anid = entry[0]
-        anname = entry[1]
-
-        rec = {"idanimal":anid,"nameanimal":anname}
-
-        jsonlist.append(rec)
-
-    return jsonify(jsonlist)
-
-@app.route('/remove')
-def removeAnim():
-    id = request.args.get('id')
-    query="DELETE FROM animals WHERE idanimal="+id+";"
-    cur.execute(query)
-    return cur.fetchall()
-
-@app.route('/addAnim')
-def addAnim():
-    name = request.args.get('name')
-    query="INSERT INTO animals (nameanimal) VALUES (\'"+name+"\');"
-    cur.execute(query)
-    return cur.fetchall()
-
-#if we run this file directly(python run.py), enter into debug mode
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

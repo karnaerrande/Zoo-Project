@@ -1,81 +1,78 @@
-.center {
-  /* display:flex; */
-  display: -webkit-box;
-  -webkit-box-pack:center;
-  -webkit-box-align:center;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  vertical-align: middle;
-  text-align: center;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto';
+    margin: 0%;
 }
-
-.parallaxWhat {
-  background-image: url("../img/what.jpg");
-
-  height: 500px;
-
-  color: white;
-
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#header{
+    font-family: 'Roboto';font-size: 15px;
 }
-
-.parallaxWho {
-  background-image: url("../img/who.jpg");
-
-  height: 500px;
-
-  color: white;
-
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#brand{
+    font-family: 'Roboto';font-size: 18px;
 }
-
-.parallaxMission {
-  background-image: url("../img/mission.jpg");
-
-  height: 500px;
-
-  color: white;
-
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#img-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding-top:35%
 }
-
-.parallaxMore {
-  background-image: url("../img/bear.jpg");
-
-  height: 500px;
-
-  color: white;
-
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+#img-subtitle{
+    font-family: 'Roboto';font-size: 22px;
+    padding:20%;
+    letter-spacing: .5ch;
+    color:white;
+    text-align:center;
 }
-
-.column1 {
-  /* height: 200px; */
-  /* margin: 10px; */
-  text-align: center;
-  font-size: 2em;
-  color: white;
--webkit-box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
--moz-box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
-box-shadow: -7px 11px 25px -9px rgba(0,0,0,1);
+#sect-head{
+    font-family: 'Roboto';font-size: 22px;
+    text-align: center;
+    padding:5%;
+    letter-spacing: 0.4ch;
 }
+#parallax-frame{
+    text-align:center;
+    font-family: 'Roboto';font-size: 30px;
+    letter-spacing: 0.05ch;
+    line-height: 2;
+    padding: 10%;
+    color:white;
+}
+#content-frame{
+    font-family: 'Roboto';
+    letter-spacing: 0.05ch;
+    line-height: 2.5;
+    padding:3%;
 
-.img2 {
-  /* background: url('https://images.unsplash.com/photo-1445295029071-5151176738d0?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1375'); */
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+#content-head{
+    letter-spacing: 0.20ch;
+}
+#footer{
+    background-color:lightslategray;
+    color:white;
+    letter-spacing: 0.2ch;
+}
+.nav-item{
+    font-family: 'Roboto';font-size: 20px;
+}
+.parallax{
+
+    height: 100%; 
+
+  
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card{
+    padding:2%;
+    text-align: center;
+    display:inline-block;
+}
+@media only screen and (max-width:749px) {
+  .parallax {
+    background-attachment: scroll;
+  }
 }
