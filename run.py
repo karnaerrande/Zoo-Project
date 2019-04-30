@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from forms import AnimalForm
@@ -5,6 +6,7 @@ from forms import AnimalForm
 app = Flask(__name__)
 app.config['SECRET_KEY']='tFXcmRsHfxl3kyaA4b59'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
@@ -21,7 +23,7 @@ class Animal(db.Model):
 @app.route("/home")
 @app.route("/")
 def home():
-    return render_template("index.html", name="Karna")
+    return render_template("index.html")
 
 @app.route("/admin/config", methods=['GET', 'POST'])
 def animconfig():
@@ -60,4 +62,4 @@ def map():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="localhost", port=5000)

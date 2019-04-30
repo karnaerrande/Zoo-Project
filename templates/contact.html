@@ -1,102 +1,101 @@
 {% extends "layout.html" %}
 {% block title %}Contact{% endblock %}
 {% block content %}
-<section class="section is-mobile" style="padding:2%">
-        <div class="container">
-          <h1 class="center is-size-2">
-            Contact Us
-          </h1>
-          <p class="subtitle center">
-            <i>And we will get back to you ASAP...</i>
-          </p>
+<!--Section: Contact v.2-->
+<section class="mb-4 container">
+
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+        a matter of hours to help you.</p>
+
+    <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name" class="">Your name</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                        <div class="md-form mb-0">
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email" class="">Your email</label>
+                        </div>
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-0">
+                            <input type="text" id="subject" name="subject" class="form-control">
+                            <label for="subject" class="">Subject</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid row-->
+
+                <!--Grid row-->
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-md-12">
+
+                        <div class="md-form">
+                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+                            <label for="message">Your message</label>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Grid row-->
+
+            </form>
+
+            <div class="text-center text-md-left">
+                <a class="btn btn-primary" onclick="">Send</a>
+            </div>
+            <div class="status"></div>
         </div>
-      </section>
+        <!--Grid column-->
 
-      <section class="section is-mobile has-background-light">
-        <div class="container">
+        <!--Grid column-->
+        <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+                <li><i class="fa fas fa-map fa-2x"></i>
+                    <p>San Francisco, CA 94126, USA</p>
+                </li>
 
-          <div class="field">
-            <label class="label">Full Name</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" name="Name" placeholder="e.g. Adam Smith">
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
-            </div>
-          </div>
+                <li><i class="fa fas fa-phone-square mt-4 fa-2x"></i>
+                    <p>+ 01 234 567 89</p>
+                </li>
 
-          <div class="field">
-            <label class="label">Company</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" name="Company" placeholder="e.g. Grand Incoporated">
-              <span class="icon is-left">
-                <i class="fas fa-building"></i>
-              </span>
-            </div>
-            <div class="help">
-              <span class="icon has-text-info" style="vertical-align:top; display: inline-block">
-                <i class="fas fa-info-circle fa-lg"></i>
-              </span>
-              If not applicable, simply type <i>NA</i>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control field has-icons-left has-addons">
-              <input class="input" type="text" name="Email" placeholder="e.g. adamsmith123">
-              <span class="icon is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="select">
-                <select>
-                  <option selected>@gmail.com</option>
-                  <option>@yahoo.com</option>
-                  <option>@hotmail.com</option>
-                  <option>Other</option>
-                </select>
-              </span>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>Volunteering</option>
-                  <option>Donation</option>
-                  <option>Private Tours</option>
-                  <option>Educational Field Trip for School</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-              <textarea class="textarea" name="message" placeholder="e.g. I want to volunteer at this zoo."></textarea>
-            </div>
-
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox">
-                I agree to the <a href="#">terms and conditions</a>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <p class="control">
-              <button class="button is-primary" type="button" name="submit">Submit</button>
-            </p>
-          </div>
+                <li><i class="fa fas fa-envelope mt-4 fa-2x"></i>
+                    <p>contact@mdbootstrap.com</p>
+                </li>
+            </ul>
         </div>
-      </section>
+        <!--Grid column-->
+
+    </div>
+
+</section>
+<!--Section: Contact v.2-->
 
 {% endblock %}
