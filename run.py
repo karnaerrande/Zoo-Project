@@ -17,7 +17,7 @@ class Animal(db.Model):
     endangered_animal = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return "Animal('{}','{}')".format(self.id_animal,self.name_animal)
+        return "Animal('{}','{}','{}')".format(self.id_animal,self.name_animal,self.endangered_animal)
 
 #frontend
 @app.route("/home")

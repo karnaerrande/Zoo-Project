@@ -9,14 +9,16 @@ Args:
     args(string[]): args for each field
 """
 class Animal:
-    def _init_(self,name, desc, fields, args):
-        #TODO: Implement 
+    def _init_(self,name, desc, endangered, fields, args):
+        #TODO: Implement
         return 0
 
 class AnimalForm(FlaskForm):
     name_animal = StringField('Name of Animal:',
                                 validators=[DataRequired(), Length(min=2, max=20)])
-    
+
     desc_animal = TextAreaField()
+
+    endangered_animal = BooleanField()
 
     submit = SubmitField('Post Animal')
