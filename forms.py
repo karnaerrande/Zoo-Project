@@ -18,17 +18,30 @@ class AnimalForm(FlaskForm):
                                 validators=[DataRequired(), Length(min=2, max=30)])
     fileName = FileField()
     desc_animal = TextAreaField(u'Animal Description', [validators.optional(), validators.length(max=400)])
-    
+
     submit = SubmitField('Post Animal')
+
 
     def validate_image(form, field):
         if field.data:
             field.data = re.sub(r'[^a-z0-9_.-]', '_', field.data)
-    
+
     def upload(request):
         form = UploadForm(request.POST)
 
         if form.image.data:
             image_data = request.FILES[form.image.name].read()
             open(os.path.join(UPLOAD_PATH, form.image.data), 'w').write(image_data)
-    
+
+
+
+class ContactForm(FlaskForm):
+    name = StringField('Your name', validators=[DataRequired(), Length(min=2, max=40)])
+
+    # email = StringField("Your email",  validators=[DataRequired(), Email("This field requires a valid email address")])
+    email = EmailField('Your email', validators=[DataRequired(), Email("This field requires a valid email address")])
+    subject = StringField('Subject', validators=[DataRequired(), Length(min=2, max=40)])
+
+    message = TextAreaField('Message', validators=[DataRequired()]);
+
+    submit = SubmitField('Post Contact');
