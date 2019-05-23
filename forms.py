@@ -9,14 +9,15 @@ Args:
     args(string[]): args for each field
 """
 class Animal:
+
     def _init_(self, name, img_url, dist, desc, breeding, diet, behavior, status, fact):
-        #TODO: Implement 
+        #TODO: Implement
         return 0
 
 class AnimalForm(FlaskForm):
     name_animal = StringField(u'Animal Name',
                                 validators=[DataRequired(), Length(min=2, max=30)])
-    
+
     desc_animal = TextAreaField(u'Animal Description', [validators.optional(), validators.length(max=400)])
     image = FileField(u'Animal Image', [validators.regexp(u'^[^/\\]\.jpg$'),validators.regexp(u'^[^/\\]\.png$'),validators.regexp(u'^[^/\\]\.jpeg$')])
     submit = SubmitField('Post Animal')

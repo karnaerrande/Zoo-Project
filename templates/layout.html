@@ -3,8 +3,8 @@
     <head>
         {% block head %}
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">  
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 
@@ -12,7 +12,7 @@
 
         <script>
             $(document).ready(function(){
-                
+
             });
         </script>
         {% endblock %}
@@ -57,27 +57,27 @@
         </div>
 
         <div id="footer">
-            
+
             {% block footer %}
                 <!-- Footer -->
                 <footer class="page-footer font-small pt-4">
-                
+
                 <!-- Footer Links -->
                 <div class="container-fluid" >
                     <!-- Content -->
                     <h6>Applegate Park Zoo</h6>
                     <h6>(209) 725-3337</h6>
                     <h6>1045 W 25th St., Merced, CA 95340</h6>
-                        
+
                 </div>
                 <hr>
                 <div style="text-align:center;padding:2%;" class="container">Website operated by the Merced Zoological Society,
-                    a 501 (c)(3) organization. 
+                    a 501 (c)(3) organization.
                 </div>
             <!-- Copyright -->
-                
-                
-            
+
+
+
             </footer>
             <!-- Footer -->
             {% endblock %}

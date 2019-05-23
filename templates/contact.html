@@ -1,102 +1,45 @@
 {% extends "layout.html" %}
 {% block title %}Contact{% endblock %}
 {% block content %}
-<section class="section is-mobile" style="padding:2%">
-        <div class="container">
-          <h1 class="center is-size-2">
-            Contact Us
-          </h1>
-          <p class="subtitle center">
-            <i>And we will get back to you ASAP...</i>
-          </p>
-        </div>
-      </section>
+<!--Section: Contact v.2-->
+<section class="mb-4 container">
 
-      <section class="section is-mobile has-background-light">
-        <div class="container">
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+        a reasonable time to help you.</p>
 
-          <div class="field">
-            <label class="label">Full Name</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" name="Name" placeholder="e.g. Adam Smith">
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
+    <div class="content-selection" style="padding:5%;">
+        <form method ="POST" action="{{ url_for('contact') }}">
+            {{ contForm.hidden_tag() }}
+            <fieldset class = "form-group">
+                <!-- <legend class="border-bottom">Contact Form:</legend> -->
+                <div class="form-group">
+                    {{contForm.name.label(class="form-control-label")}}
+                    {{contForm.name(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{contForm.email.label(class="form-control-label")}}
+                    {{contForm.email(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{contForm.subject.label(class="form-control-label")}}
+                    {{contForm.subject(class="form-control form-control-lg")}}
+                </div>
+                <div class="form-group">
+                    {{contForm.message.label(class="form-control-label")}}
+                    {{contForm.message(class="form-control form-control-lg")}}
+                </div>
+              </fieldset>
+            <div class="form-group">
+                {{contForm.submit(class="btn btn-outline-info")}}
             </div>
-          </div>
+        </form>
+    </div>
 
-          <div class="field">
-            <label class="label">Company</label>
-            <div class="control has-icons-left">
-              <input class="input" type="text" name="Company" placeholder="e.g. Grand Incoporated">
-              <span class="icon is-left">
-                <i class="fas fa-building"></i>
-              </span>
-            </div>
-            <div class="help">
-              <span class="icon has-text-info" style="vertical-align:top; display: inline-block">
-                <i class="fas fa-info-circle fa-lg"></i>
-              </span>
-              If not applicable, simply type <i>NA</i>
-            </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control field has-icons-left has-addons">
-              <input class="input" type="text" name="Email" placeholder="e.g. adamsmith123">
-              <span class="icon is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="select">
-                <select>
-                  <option selected>@gmail.com</option>
-                  <option>@yahoo.com</option>
-                  <option>@hotmail.com</option>
-                  <option>Other</option>
-                </select>
-              </span>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>Volunteering</option>
-                  <option>Donation</option>
-                  <option>Private Tours</option>
-                  <option>Educational Field Trip for School</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-              <textarea class="textarea" name="message" placeholder="e.g. I want to volunteer at this zoo."></textarea>
-            </div>
-
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox">
-                I agree to the <a href="#">terms and conditions</a>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <p class="control">
-              <button class="button is-primary" type="button" name="submit">Submit</button>
-            </p>
-          </div>
-        </div>
-      </section>
+</section>
+<!--Section: Contact v.2-->
 
 {% endblock %}
