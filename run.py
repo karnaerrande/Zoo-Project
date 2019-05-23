@@ -1,8 +1,19 @@
 #!/usr/bin/env python
+from __future__ import print_function
 from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from forms import AnimalForm, ContactForm
 import smtplib
+
+import datetime
+import dateutil.parser
+import pickle
+import os.path
+from googleapiclient.discovery import build
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='tFXcmRsHfxl3kyaA4b59'
@@ -78,7 +89,55 @@ def contact():
 
 @app.route("/events")
 def events():
-    return render_template("events.html")
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server()
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
+
+    service = build('calendar', 'v3', credentials=creds)
+
+    # Call the Calendar API
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    # print('Getting the upcoming 10 events')
+    events_result = service.events().list(calendarId='primary', timeMin=now,
+                                        maxResults=10, singleEvents=True,
+                                        orderBy='startTime').execute()
+    events = events_result.get('items', [])
+
+    eventsArr = []
+
+    pictures = ['bear.jpg', 'A bear', 'deer.jpg', 'A deer', 'pck.jpg', 'A peacock', 'what.jpg', 'A male peacock', 'who.jpg', 'A koala']
+
+    counter = 0
+    for event in events:
+        eventArr = []
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        d = dateutil.parser.parse(start)
+        startDate = d.strftime('%A, %B %-d at %-I:%M %p')
+        eventArr.append(startDate)
+        eventArr.append(event['summary'])
+        eventArr.append(pictures[counter])
+        eventArr.append(pictures[counter+1])
+        counter += 2
+        if(counter > len(pictures)):
+            counter = 0;
+        eventsArr.append(eventArr)
+
+    return render_template("events.html", events=eventsArr)
 
 @app.route("/map")
 def map():
@@ -88,4 +147,4 @@ def map():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host="localhost", port=5000)
+    app.run(debug=True, host="localhost", port=5000, threaded=True)

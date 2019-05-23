@@ -24,10 +24,6 @@ class AnimalForm(FlaskForm):
 
     submit = SubmitField('Post Animal')
 
-class Contact:
-    def _init(self, name, email, subject, message):
-        # TODO: Implement
-        return 0
 
 class ContactForm(FlaskForm):
     name = StringField('Your name', validators=[DataRequired(), Length(min=2, max=40)])
