@@ -16,7 +16,7 @@ class Animal:
 class AnimalForm(FlaskForm):
     name_animal = StringField(u'Animal Name',
                                 validators=[DataRequired(), Length(min=2, max=30)])
-
+    fileName = FileField()
     desc_animal = TextAreaField(u'Animal Description', [validators.optional(), validators.length(max=400)])
     
     submit = SubmitField('Post Animal')
