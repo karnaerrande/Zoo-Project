@@ -1,7 +1,92 @@
-.center {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  align-self: center;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto';
+    margin: 0%;
+}
+#header{
+    font-family: 'Roboto';font-size: 15px;
+}
+#brand{
+    font-family: 'Roboto';font-size: 18px;
+}
+#img-logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-top:35%
+}
+#img-subtitle{
+    font-family: 'Roboto';font-size: 22px;
+    padding:20%;
+    letter-spacing: .5ch;
+    color:white;
+    text-align:center;
+}
+#sect-head{
+    font-family: 'Roboto';font-size: 22px;
+    text-align: center;
+    padding:5%;
+    letter-spacing: 0.4ch;
+}
+#parallax-frame{
+    text-align:center;
+    font-family: 'Roboto';font-size: 30px;
+    letter-spacing: 0.05ch;
+    line-height: 2;
+    padding: 10%;
+    color:white;
+}
+#content-frame{
+    font-family: 'Roboto';
+    letter-spacing: 0.05ch;
+    line-height: 2.5;
+    padding:3%;
+
+}
+#content-head{
+    letter-spacing: 0.20ch;
+}
+#footer{
+    background-color:lightslategray;
+    color:white;
+    letter-spacing: 0.2ch;
+}
+.nav-item{
+    font-family: 'Roboto';font-size: 20px;
+}
+.parallax{
+
+    height: 100%;
+
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.card{
+    padding:2%;
+    text-align: center;
+    display:inline-block;
+}
+@media only screen and (max-width:749px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}
+.event {
+  padding-left: 5%;
+}
+.event-date {
+  text-align: left;
+  color: green;
+
+}
+.event-desc {
+  text-align: left;
+  padding-right: 5%;
+  padding-left: 10%;
+  padding-top: 3%;
 }

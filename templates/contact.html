@@ -1,191 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
-        <!-- <link rel="stylesheet" href="../static/css/debug.css"> -->
-        <link rel="stylesheet" href="../static/css/main.css">
-        <script src="../static/js/main.js"></script>
+{% extends "layout.html" %}
+{% block title %}Contact{% endblock %}
+{% block content %}
+<!--Section: Contact v.2-->
+<section class="mb-4 container">
 
+    <!--Section heading-->
+    <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+    <!--Section description-->
+    <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+        a reasonable time to help you.</p>
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <script>
-
-            $(document).ready(function(){
-                 // Check for click events on the navbar burger icon
-                $(".navbar-burger").click(function() {
-                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                    $(".navbar-burger").toggleClass("is-active");
-                    $(".navbar-menu").toggleClass("is-active");
-
-                });
-            });
-        </script>
-
-
-        <title>Applegate Zoo</title>
-         <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-
-        <nav class="navbar is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <i class="fa fa-home"></i>
-                </a>
-
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-
-                    <a class="navbar-item" href="/events">
-                        Events
-                    </a>
-
-                    <a class="navbar-item" href="/map">
-                        Map
-                    </a>
-
-                    <a class="navbar-item" href="/animals">
-                        Animals
-                    </a>
-
-                    <a class="navbar-item" href="/contact">
-                        Contact Us
-                    </a>
+    <div class="content-selection" style="padding:5%;">
+        <form method ="POST" action="{{ url_for('contact') }}">
+            {{ contForm.hidden_tag() }}
+            <fieldset class = "form-group">
+                <!-- <legend class="border-bottom">Contact Form:</legend> -->
+                <div class="form-group">
+                    {{contForm.name.label(class="form-control-label")}}
+                    {{contForm.name(class="form-control form-control-lg")}}
                 </div>
-            </div>
-        </nav>
-
-        <section class="section is-mobile" style="padding-top:70px">
-          <div class="container">
-            <h1 class="center is-size-2">
-              Contact Us
-            </h1>
-            <p class="subtitle center">
-              <i>And we will get back to you ASAP...</i>
-            </p>
-          </div>
-        </section>
-
-        <section class="section is-mobile has-background-light">
-          <div class="container">
-
-            <div class="field">
-              <label class="label">Full Name</label>
-              <div class="control has-icons-left">
-                <input class="input" type="text" name="Name" placeholder="e.g. Adam Smith">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
-                </span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label">Company</label>
-              <div class="control has-icons-left">
-                <input class="input" type="text" name="Company" placeholder="e.g. Grand Incoporated">
-                <span class="icon is-left">
-                  <i class="fas fa-building"></i>
-                </span>
-              </div>
-              <div class="help">
-                <span class="icon has-text-info" style="vertical-align:top; display: inline-block">
-                  <i class="fas fa-info-circle fa-lg"></i>
-                </span>
-                If not applicable, simply type <i>NA</i>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control field has-icons-left has-addons">
-                <input class="input" type="text" name="Email" placeholder="e.g. adamsmith123">
-                <span class="icon is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <span class="select">
-                  <select>
-                    <option selected>@gmail.com</option>
-                    <option>@yahoo.com</option>
-                    <option>@hotmail.com</option>
-                    <option>Other</option>
-                  </select>
-                </span>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label">Subject</label>
-              <div class="control">
-                <div class="select">
-                  <select>
-                    <option>Select dropdown</option>
-                    <option>Volunteering</option>
-                    <option>Donation</option>
-                    <option>Private Tours</option>
-                    <option>Educational Field Trip for School</option>
-                  </select>
+                <div class="form-group">
+                    {{contForm.email.label(class="form-control-label")}}
+                    {{contForm.email(class="form-control form-control-lg")}}
                 </div>
-              </div>
-            </div>
-
-            <div class="field">
-              <label class="label">Message</label>
-              <div class="control">
-                <textarea class="textarea" name="message" placeholder="e.g. I want to volunteer at this zoo."></textarea>
-              </div>
-
-            </div>
-
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
-                  <input type="checkbox">
-                  I agree to the <a href="#">terms and conditions</a>
-                </label>
-              </div>
-            </div>
-
-            <div class="field">
-              <p class="control">
-                <button class="button is-primary" type="button" name="submit">Submit</button>
-              </p>
-            </div>
-          </div>
-        </section>
-
-
-        <hr>
-        <footer>
-            <div style="padding:1%;" class="columns">
-                <div style="text-align:left;" class="column">
-                    Applegate Park Zoo
-                    <span><br></span>
-                    (209) 725-3337
-                    <span><br></span>
-                    1045 W 25th St., Merced, CA 95340
+                <div class="form-group">
+                    {{contForm.subject.label(class="form-control-label")}}
+                    {{contForm.subject(class="form-control form-control-lg")}}
                 </div>
-
-                <div style="text-align:right;" class="column">
-                    Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization.
+                <div class="form-group">
+                    {{contForm.message.label(class="form-control-label")}}
+                    {{contForm.message(class="form-control form-control-lg")}}
                 </div>
-        </footer>
+              </fieldset>
+            <div class="form-group">
+                {{contForm.submit(class="btn btn-outline-info")}}
+            </div>
+        </form>
+    </div>
 
-    </body>
 
-</html>
+</section>
+<!--Section: Contact v.2-->
+
+{% endblock %}

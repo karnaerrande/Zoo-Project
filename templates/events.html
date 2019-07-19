@@ -1,104 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+{% extends "layout.html" %}
+{% block title %}Events{% endblock %}
+{% block content %}
+<section class="">
 
-        <link rel="stylesheet" href="../static/css/main.css">
-        <script src="../static/js/main.js"></script>
-
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <script>
-
-            $(document).ready(function(){
-                 // Check for click events on the navbar burger icon
-                $(".navbar-burger").click(function() {
-                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                    $(".navbar-burger").toggleClass("is-active");
-                    $(".navbar-menu").toggleClass("is-active");
-
-                });
-            });
-        </script>
+  <!--Section heading-->
+  <h2 class="h1-responsive font-weight-bold text-center">Our Upcoming Events</h2>
 
 
-        <title>Applegate Zoo</title>
-         <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+  <!-- <div class="center text-center" style="padding:5%;">
+    <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%230B8043&amp;ctz=America%2FLos_Angeles&amp;src=YXBybzIzMjRAZ21haWwuY29t&amp;<iframe src="https://calendar.google.com/calendar/embed?height=800&amp;wkst=1&amp;bgcolor=%230B8043&amp;ctz=America%2FLos_Angeles&amp;src=YXBybzIzMjRAZ21haWwuY29t&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23039BE5&amp;color=%2333B679&amp;color=%230B8043&amp;showTitle=1&amp;showNav=1&amp;showCalendars=0" style="border:solid 1px #777" width="1200" height="800" frameborder="0" scrolling="no"></iframe>
 
-        <nav class="navbar is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <i class="fa fa-home"></i>
-                </a>
+  </div> -->
 
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
+  <!-- <h1 class="text-center">Upcoming Events</h1> -->
+  <br>
+  {% for event in events%}
+  <div class="container">
 
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-
-                    <a class="navbar-item" href="/events">
-                        Events
-                    </a>
-
-                    <a class="navbar-item" href="/map">
-                        Map
-                    </a>
-
-                    <a class="navbar-item" href="/animals">
-                        Animals
-                    </a>
-
-                    <a class="navbar-item" href="/contact">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-            </div>
-        </nav>
-
-
-        <section class="section" style="padding-top:70px">
-          <div class="container">
-            <h1 class="center is-size-2">
-              Our Community Events
-            </h1>
-            <p class="subtitle center">
-              <i>Educational and Fun!</i>
-            </p>
+    <div class="row">
+      <div class="col-lg">
+        <div class="event">
+          <div class="event-date">
+            <h2>{{event[0]}}</h2>
           </div>
-        </section>
+          <div class="event-desc">
+            <p>{{event[1]}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <figure class="figure">
+        <img src=../static/img/{{event[2]}} class="figure-img img-fluid rounded">
+        <figcaption class="figure-caption">{{event[3]}}</figcaption>
+      </figure>
+      </div>
+    </div>
+  </div>
 
+  {% endfor %}
 
-
-        <hr>
-        <footer>
-            <div style="padding:1%;" class="columns">
-                <div style="text-align:left;" class="column">
-                    Applegate Park Zoo
-                    <span><br></span>
-                    (209) 725-3337
-                    <span><br></span>
-                    1045 W 25th St., Merced, CA 95340
-                </div>
-
-                <div style="text-align:right;" class="column">
-                    Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization.
-                </div>
-        </footer>
-
-    </body>
-
-</html>
+  <div class="container">
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick="">See other events</button>
+  </div>
+</section>
+<br>
+{% endblock %}

@@ -1,191 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> -->
-        <link rel="stylesheet" href="../static/css/main.css">
-        <script src="../static/js/main.js"></script>
+{% extends "layout.html" %}
+{% block title %}Admin{% endblock %}
+{% block content %}
+<div style="text-align:center;" class="content-selection" style="padding:5%;">
+  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#animalForm">
+    Add new animal
+  </button>
+  <div class="modal fade" id="animalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">New Animal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <div class="modal-body">
+          <form method="POST" action="">
+            {{ animForm.hidden_tag() }}
+            <fieldset class="form-group">
 
-        <script>
-           
-            
-            $(document).ready(function(){
-                 // Check for click events on the navbar burger icon
-                
-                $(".navbar-burger").click(function() {
-                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-                    $(".navbar-burger").toggleClass("is-active");
-                    $(".navbar-menu").toggleClass("is-active");
-
-                });
-            });
-            
-        </script>
-
-
-        <title>Applegate Zoo</title>
-         <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-
-        <nav class="navbar is-fixed-top has-background-light" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/">
-                    <i class="fa fa-home"></i>
-                </a>
-
-                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-
-                    <a class="navbar-item" href="/events">
-                        Events
-                    </a>
-
-                    <a class="navbar-item" href="/map">
-                        Map
-                    </a>
-
-                    <a class="navbar-item" href="/animals">
-                        Animals
-                    </a>
-
-                    <a class="navbar-item" href="/contact">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-            </div>
-        </nav>
-
-        <hr>
-
-
-        <section class="section is-mobile">
-          <div style="padding:2%" class="card is-fullwidth">
-            <header class="card-header">
-              <p class="card-header-title">
-                Website Data
-              </p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                
+              <div class="form-group">
+                {{animForm.name_animal.label(class="form-control-label")}}
+                {{animForm.name_animal(class="form-control form-control-lg")}}
               </div>
 
-            </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">Save</a>
-              <a href="#" class="card-footer-item">Edit</a>
-              <a href="#" class="card-footer-item">Delete</a>
-            </footer>
-          </div>
-
-
-          <hr>
-
-          <div style="padding:2%" class="card is-fullwidth">
-            <header class="card-header">
-              <p class="card-header-title">
-                Add Animal
-              </p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                <form action="/process" method="POST" class="form-horizontal" >
-                  <fieldset>
-                  <!-- Text input-->
-                 
-                      <input id="animal-name" name="animal-name" type="text" placeholder="Name of animal" class="input ">
-                      
-
-                  <!-- Text input-->
-                 
-                      <input id="animal-end" name="animal-end" type="text" placeholder="True or False" class="input ">
-                      
-
-                  <!-- Textarea -->
-                                     
-                      <textarea class="textarea" id="animal-desc" name="animal-desc"></textarea>
-                    
-
-                  </fieldset>
-                  <input type= submit name='submit'>
-                </form>
-
+              <div class="form-group">
+                {{animForm.names.label(class="form-control-label")}}
+                {{animForm.names(class="form-control form-control-lg")}}
               </div>
-            </div>
-            <footer class="card-footer">
-              
-            </footer>
-          </div>
-          
-          <hr>
-          
-          <div style="padding:2%" class="card is-fullwidth">
-            <header class="card-header">
-              <p class="card-header-title">
-                Remove Animal
-              </p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                
+
+              <div class="form-group">
+                {{animForm.img_url.label(class="form-control-label")}}
+                {{animForm.img_url(class="form-control form-control-lg")}}
               </div>
+
+              <div class="form-group">
+                {{animForm.dist_animal.label(class="form-control-label")}}
+                {{animForm.dist_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.desc_animal.label(class="form-control-label")}}
+                {{animForm.desc_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.breed_animal.label(class="form-control-label")}}
+                {{animForm.breed_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.diet_animal.label(class="form-control-label")}}
+                {{animForm.diet_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.behavior_animal.label(class="form-control-label")}}
+                {{animForm.behavior_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.status_animal.label(class="form-control-label")}}
+                {{animForm.status_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.fact_animal.label(class="form-control-label")}}
+                {{animForm.fact_animal(class="form-control form-control-lg")}}
+              </div>
+            </fieldset>
+
+            <div class="form-group">
+              {{animForm.submit(class="btn btn-outline-info")}}
             </div>
-            <footer class="card-footer">
-              
-            </footer>
+          </form>
+        </div>
 
-          </div>
-        </section>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
-        <hr>
-        <footer>
-            <div style="padding:1%;" class="columns">
-                <div style="text-align:left;" class="column">
-                    Applegate Park Zoo
-                    <span><br></span>
-                    (209) 725-3337
-                    <span><br></span>
-                    1045 W 25th St., Merced, CA 95340
-                </div>
+<div style="padding:5%" class="container-fluid">
+  <h3>Edit Animals</h3>
+  {% for animal in allAnim %}
+  <button class="btn btn-outline-warning">Edit {{animal.name_animal}}</button>
+  {% endfor%}
+</div>
 
-                <div style="text-align:right;" class="column">
-                    Website operated by the Merced Zoological Society,<span><br></span> a 501 (c)(3) organization.
-                </div>
-        </footer>
+<div style="padding:5%" class="container-fluid">
+  <h3>Delete Animals</h3>
+  {% for animal in allAnim %}
+  <button class="btn btn-outline-danger">Delete {{animal.name_animal}}</button>
+  {% endfor%}
+</div>
 
-    </body>
-
-</html>
+{% endblock %}
