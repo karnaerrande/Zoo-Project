@@ -1,54 +1,105 @@
 {% extends "layout.html" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
-<div class="content-selection" style="padding:5%;">
-    <form method ="POST" action="">
-        {{ animForm.hidden_tag() }}
-        <fieldset class = "form-group">
-            <legend class="border-bottom">Add Animal</legend>
-            <div class="form-group">
+<div style="text-align:center;" class="content-selection" style="padding:5%;">
+  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#animalForm">
+    Add new animal
+  </button>
+  <div class="modal fade" id="animalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">New Animal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form method="POST" action="">
+            {{ animForm.hidden_tag() }}
+            <fieldset class="form-group">
+
+              <div class="form-group">
                 {{animForm.name_animal.label(class="form-control-label")}}
                 {{animForm.name_animal(class="form-control form-control-lg")}}
-            </div>
-            <div class="form-group">
+              </div>
+
+              <div class="form-group">
+                {{animForm.names.label(class="form-control-label")}}
+                {{animForm.names(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.img_url.label(class="form-control-label")}}
+                {{animForm.img_url(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.dist_animal.label(class="form-control-label")}}
+                {{animForm.dist_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
                 {{animForm.desc_animal.label(class="form-control-label")}}
                 {{animForm.desc_animal(class="form-control form-control-lg")}}
-            </div>
+              </div>
+
+              <div class="form-group">
+                {{animForm.breed_animal.label(class="form-control-label")}}
+                {{animForm.breed_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.diet_animal.label(class="form-control-label")}}
+                {{animForm.diet_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.behavior_animal.label(class="form-control-label")}}
+                {{animForm.behavior_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.status_animal.label(class="form-control-label")}}
+                {{animForm.status_animal(class="form-control form-control-lg")}}
+              </div>
+
+              <div class="form-group">
+                {{animForm.fact_animal.label(class="form-control-label")}}
+                {{animForm.fact_animal(class="form-control form-control-lg")}}
+              </div>
+            </fieldset>
+
             <div class="form-group">
-                {{animForm.endangered_animal.label(class="form-control-label")}}
-                {{animForm.endangered_animal(class="form-control form-control-lg")}}
+              {{animForm.submit(class="btn btn-outline-info")}}
             </div>
-
-            <div class="d-flex justify-content-center">
-                <button id="addFields" class ="btn btn-outline-info">Add Field</button>
-            </div>
-
-        </fieldset>
-        <div class="form-group">
-            {{animForm.submit(class="btn btn-outline-info")}}
+          </form>
         </div>
-    </form>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </div>
 
-<div style="padding:5%" class = "container-fluid">
-    <h3>Delete Animals</h3>
-    {% for animal in allAnim %}
-    <button class="btn btn-outline-danger">Delete {{animal.name_animal}}</button>
-    {% endfor%}
+<div style="padding:5%" class="container-fluid">
+  <h3>Edit Animals</h3>
+  {% for animal in allAnim %}
+  <button class="btn btn-outline-warning">Edit {{animal.name_animal}}</button>
+  {% endfor%}
 </div>
 
-
-<div style="padding:5%" class = "container-fluid">
-    <h3>Edit Animals</h3>
-    {% for animal in allAnim %}
-    <button class="btn btn-outline-warning">Edit {{animal.name_animal}}</button>
-    {% endfor%}
+<div style="padding:5%" class="container-fluid">
+  <h3>Delete Animals</h3>
+  {% for animal in allAnim %}
+  <button class="btn btn-outline-danger">Delete {{animal.name_animal}}</button>
+  {% endfor%}
 </div>
-
-<script>
-    function addFields(){
-
-    }
-</script>
 
 {% endblock %}
