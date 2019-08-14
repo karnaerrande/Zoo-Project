@@ -4,9 +4,14 @@ html, body {
     font-family: 'Roboto';
     margin: 0%;
 }
+.bordered-table{
+    border: 1px solid black;
+}
+
 #header{
     font-family: 'Roboto';font-size: 15px;
 }
+
 #brand{
     font-family: 'Roboto';font-size: 18px;
 }

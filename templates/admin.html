@@ -1,6 +1,12 @@
 {% extends "layout.html" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
+<table style="width:100%" class="bordered-table">
+  <tr>
+    <th class="bordered-table">Animal ID</th>
+    <th>Animal Name</th>
+  </tr>
+</table>
 <div style="text-align:center;" class="content-selection" style="padding:5%;">
   <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#animalForm">
     Add new animal
@@ -18,7 +24,7 @@
         </div>
 
         <div class="modal-body">
-          <form method="POST" action="">
+          <form method="POST" action="/addAnimal">
             {{ animForm.hidden_tag() }}
             <fieldset class="form-group">
 
@@ -33,8 +39,8 @@
               </div>
 
               <div class="form-group">
-                {{animForm.img_url.label(class="form-control-label")}}
-                {{animForm.img_url(class="form-control form-control-lg")}}
+                {{animForm.img.label(class="form-control-label")}}
+                {{animForm.img(class="form-control form-control-lg")}}
               </div>
 
               <div class="form-group">
@@ -87,19 +93,4 @@
     </div>
   </div>
 </div>
-
-<div style="padding:5%" class="container-fluid">
-  <h3>Edit Animals</h3>
-  {% for animal in allAnim %}
-  <button class="btn btn-outline-warning">Edit {{animal.name_animal}}</button>
-  {% endfor%}
-</div>
-
-<div style="padding:5%" class="container-fluid">
-  <h3>Delete Animals</h3>
-  {% for animal in allAnim %}
-  <button class="btn btn-outline-danger">Delete {{animal.name_animal}}</button>
-  {% endfor%}
-</div>
-
 {% endblock %}

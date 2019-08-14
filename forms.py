@@ -19,7 +19,7 @@ class AnimalForm(FlaskForm):
                                 validators=[DataRequired(), Length(min=2, max=30)])
     names =  StringField(u'Names',
                                 validators=[DataRequired(), Length(min=2, max=30)])
-    img_url = FileField()
+    img = FileField()
     dist_animal = TextAreaField(u'Distribution', [validators.optional(), validators.length(max=400)])
     desc_animal = TextAreaField(u'Description', [validators.optional(), validators.length(max=400)])
 
@@ -32,19 +32,6 @@ class AnimalForm(FlaskForm):
     fact_animal = TextAreaField(u'Fact', [validators.optional(), validators.length(max=300)])
 
     submit = SubmitField('Post')
-
-
-    def validate_image(form, field):
-        if field.data:
-            field.data = re.sub(r'[^a-z0-9_.-]', '_', field.data)
-
-    def upload(request):
-        form = UploadForm(request.POST)
-
-        if form.image.data:
-            image_data = request.FILES[form.image.name].read()
-            open(os.path.join(UPLOAD_PATH, form.image.data), 'w').write(image_data)
-
 
 
 class ContactForm(FlaskForm):

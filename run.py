@@ -19,17 +19,25 @@ app = Flask(__name__)
 app.config['SECRET_KEY']='tFXcmRsHfxl3kyaA4b59'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = '/static/animals'
 
 db = SQLAlchemy(app)
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 class Animal(db.Model):
     id_animal = db.Column(db.Integer, primary_key=True)
     name_animal = db.Column(db.String(20), unique=True, nullable = False)
+    #image is located at the static/animals/ directory
+    dist_animal = db.Column(db.String(2000), unique=True, nullable = False)
+    diet_animal = db.Column(db.String(2000), unique=True, nullable = False)
     desc_animal = db.Column(db.String(2000), unique=True, nullable = False)
-    endangered_animal = db.Column(db.String(20), unique=False, nullable=False)
+    breed_animal = db.Column(db.String(2000), unique=True, nullable = False)
+    status_animal = db.Column(db.String(20), unique=False, nullable=False)
+    fact_animal = db.Column(db.String(2000), unique=True, nullable = True)
 
     def __repr__(self):
-        return "Animal('{}','{}','{}')".format(self.id_animal,self.name_animal,self.endangered_animal)
+        return "Animal('{}','{}','{}')".format(self.id_animal,self.name_animal,self.status_animal)
 
 #frontend
 @app.route("/home")
@@ -41,22 +49,36 @@ def home():
 def animconfig():
     return 0
 
-@app.route("/admin", methods =['GET','POST'])
-def admin():
-    allAnim=Animal.query.all()
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/addAnimal', methods = ['GET', 'POST'])
+def uploadAnimal():
+    count = Animal.query.count()
     animForm = AnimalForm()
-    if animForm.validate_on_submit():
+    if request.method == 'POST':
         temp = Animal(name_animal=animForm.name_animal.data,desc_animal=animForm.desc_animal.data,endangered_animal=animForm.status_animal.data)
         db.session.add(temp)
         db.session.commit()
-        flash('Animal created for {}!'.format(animForm.name_animal.data),'success')
-        return redirect("/admin")
+        flash('Animal created for {}!'.format(animForm.name_animal.data),'success')   
+        if animForm.validate_on_submit():
+            if animForm.img.data:
+                image_data = request.FILES[animForm.img.data].read()
+                open(os.path.join('static/animals',"{}{}".format(count+1, '.png')), 'w').write(image_data)
+    return redirect("/admin")  
+
+@app.route("/admin")
+def admin():
+    allAnim=Animal.query.all()
+    animForm = AnimalForm()
     return render_template("admin.html", animForm=animForm, allAnim=allAnim)
 
 @app.route("/animals")
 def animals():
     allAnim=Animal.query.all()
     return render_template("animals.html", allAnim=allAnim)
+
 
 @app.route("/contact", methods =['GET','POST'])
 def contact():
@@ -144,6 +166,9 @@ def events():
 def map():
     return render_template("map.html")
 
+@app.route("/trueAdmin")
+def trueAdmin():
+    return render_template("")
 
 
 if __name__ == '__main__':
