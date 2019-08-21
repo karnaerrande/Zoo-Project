@@ -53,6 +53,13 @@ def admin():
         return redirect("/admin")
     return render_template("admin.html", animForm=animForm, allAnim=allAnim)
 
+@app.route("/delete/<NAME>",methods =['GET','POST',"DELETE"])
+def delete(NAME):
+    db.session.bind.execute('delete from animal where name_animal = ?', [str(NAME[12:])])
+    db.session.commit()
+    flash('Recipe Deleted','success')
+    return redirect("/admin")
+
 @app.route("/animals")
 def animals():
     allAnim=Animal.query.all()
