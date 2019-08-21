@@ -55,7 +55,7 @@ def admin():
 
 @app.route("/delete/<NAME>",methods =['GET','POST',"DELETE"])
 def delete(NAME):
-    db.session.bind.execute('delete from animal where name_animal = ?', [str(NAME[12:])])
+    db.session.bind.execute('delete from animal where name_animal = ?', [str(NAME)])
     db.session.commit()
     flash('Recipe Deleted','success')
     return redirect("/admin")

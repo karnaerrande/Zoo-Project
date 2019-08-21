@@ -33,7 +33,7 @@
 <div style="padding:5%" class = "container-fluid">
     <h3>Delete Animals</h3>
     {% for animal in allAnim %}
-    <a href="/delete/name_animal={{animal.name_animal}}" class="btn btn-outline-danger">Delete {{animal.name_animal}}</a>
+    <a href="/delete/{{animal.name_animal}}" class="btn btn-outline-danger">Delete {{animal.name_animal}}</a>
     {% endfor%}
 </div>
 
