@@ -58,7 +58,7 @@ def uploadAnimal():
     count = Animal.query.count()
     animForm = AnimalForm()
     if request.method == 'POST':
-        temp = Animal(name_animal=animForm.name_animal.data,desc_animal=animForm.desc_animal.data,endangered_animal=animForm.status_animal.data)
+        temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data)
         db.session.add(temp)
         db.session.commit()
         flash('Animal created for {}!'.format(animForm.name_animal.data),'success')   

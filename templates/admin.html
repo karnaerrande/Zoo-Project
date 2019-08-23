@@ -1,14 +1,10 @@
 {% extends "layout.html" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
-<table style="width:100%" class="bordered-table">
-  <tr>
-    <th class="bordered-table">Animal ID</th>
-    <th>Animal Name</th>
-  </tr>
-</table>
+<div class="container-fluid">
+
 <div style="text-align:center;" class="content-selection" style="padding:5%;">
-  <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#animalForm">
+  <button type="button" class="btn btn-outline+-info" data-toggle="modal" data-target="#animalForm">
     Add new animal
   </button>
   <div class="modal fade" id="animalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -92,5 +88,6 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endblock %}

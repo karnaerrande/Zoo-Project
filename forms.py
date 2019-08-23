@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, FileField, BooleanField, TextAreaField, StringField, SubmitField, validators
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, Email
 from wtforms.fields.html5 import EmailField
 
 """
@@ -38,7 +38,7 @@ class ContactForm(FlaskForm):
     name = StringField('Your name', validators=[DataRequired(), Length(min=2, max=40)])
 
     # email = StringField("Your email",  validators=[DataRequired(), Email("This field requires a valid email address")])
-    # email = EmailField('Your email', validators=[DataRequired(), Email("This field requires a valid email address")])
+    email = EmailField('Your email', validators=[DataRequired(), Email("This field requires a valid email address")])
     subject = StringField('Subject', validators=[DataRequired(), Length(min=2, max=40)])
 
     message = TextAreaField('Message', validators=[DataRequired()]);
