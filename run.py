@@ -27,14 +27,14 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 class Animal(db.Model):
     id_animal = db.Column(db.Integer, primary_key=True)
-    name_animal = db.Column(db.String(20), unique=True, nullable = False)
+    name_animal = db.Column(db.String(20), unique=False, nullable = False)
     #image is located at the static/animals/ directory
-    dist_animal = db.Column(db.String(2000), unique=True, nullable = False)
-    diet_animal = db.Column(db.String(2000), unique=True, nullable = False)
-    desc_animal = db.Column(db.String(2000), unique=True, nullable = False)
-    breed_animal = db.Column(db.String(2000), unique=True, nullable = False)
+    dist_animal = db.Column(db.String(2000), unique=False, nullable = False)
+    diet_animal = db.Column(db.String(2000), unique=False, nullable = False)
+    desc_animal = db.Column(db.String(2000), unique=False, nullable = False)
+    breed_animal = db.Column(db.String(2000), unique=False, nullable = False)
     status_animal = db.Column(db.String(20), unique=False, nullable=False)
-    fact_animal = db.Column(db.String(2000), unique=True, nullable = True)
+    fact_animal = db.Column(db.String(2000), unique=False, nullable = True)
 
     def __repr__(self):
         return "Animal('{}','{}','{}')".format(self.id_animal,self.name_animal,self.status_animal)
@@ -57,15 +57,12 @@ def allowed_file(filename):
 def uploadAnimal():
     count = Animal.query.count()
     animForm = AnimalForm()
-    if request.method == 'POST':
+    if animForm.validate_on_submit():
         temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data)
         db.session.add(temp)
+        #try to add image here
         db.session.commit()
         flash('Animal created for {}!'.format(animForm.name_animal.data),'success')   
-        if animForm.validate_on_submit():
-            if animForm.img.data:
-                image_data = request.FILES[animForm.img.data].read()
-                open(os.path.join('static/animals',"{}{}".format(count+1, '.png')), 'w').write(image_data)
     return redirect("/admin")  
 
 @app.route("/admin")
