@@ -53,11 +53,23 @@ def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+def savePic(picture_data):
+    currid = len(Animal.query.all()) + 1
+    f_name, f_ext = os.path.splitext(picture_data)
+    picture_fn = str(currid) + f_ext
+    pic_path= os.path.join('static/img', picture_fn)
+    picture_data.save(pic_path)
+
+    return picture_fn
+
 @app.route('/addAnimal', methods = ['GET', 'POST'])
 def uploadAnimal():
-    count = Animal.query.count()
+    count = len(Animal.query.all())
     animForm = AnimalForm()
     if animForm.validate_on_submit():
+        if animForm.img.data:
+            picture_file = savePic(animForm.img.data)
+
         temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data)
         db.session.add(temp)
         #try to add image here
@@ -75,6 +87,11 @@ def admin():
 def animals():
     allAnim=Animal.query.all()
     return render_template("animals.html", allAnim=allAnim)
+
+@app.route("/animals/<id>")
+def animal(id):
+    anim = Animal.query.get(1)
+    return render_template("animal.html", animal=anim)
 
 
 @app.route("/contact", methods =['GET','POST'])

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %} {{animal.name_animal}} {% endblock %}
+{% block content %}
+  <div class="container-fluid">
+    <h2>{{animal.name_animal}}</h2>
+    <h3>Status: {{animal.status_animal}}</h3>
+
+    <p>Description: {{animal.desc_animal}}</p>
+
+    <p>Distribution: {{animal.dist_animal}}</p>
+    
+    <p>Animal Diet: {{animal.diet_animal}}</p>
+    
+    <p>Breed: {{animal.breed_animal}}</p>
+    
+    <p>Animal facts: {{animal.fact_animal}}</p>
+  </div>
+{% endblock %}
