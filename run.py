@@ -2,6 +2,7 @@
 from __future__ import print_function
 from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+from image_handler import ImageHandler
 from forms import AnimalForm, ContactForm
 import smtplib
 
@@ -21,20 +22,28 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = '/static/animals'
 
-db = SQLAlchemy(app)
+# Uploads
+app.config['UPLOADS_DEFAULT_DEST'] = '/static/img/'
+app.config['UPLOADS_DEFAULT_URL'] = 'http://localhost:5000/static/img/'
+ 
+app.config['UPLOADED_IMAGES_DEST'] = '/static/img/'
+app.config['UPLOADED_IMAGES_URL'] = 'http://localhost:5000/static/img/'
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+db = SQLAlchemy(app)
+ihandle = ImageHandler(app)
+
 
 class Animal(db.Model):
     id_animal = db.Column(db.Integer, primary_key=True)
     name_animal = db.Column(db.String(20), unique=False, nullable = False)
-    #image is located at the static/animals/ directory
     dist_animal = db.Column(db.String(2000), unique=False, nullable = False)
     diet_animal = db.Column(db.String(2000), unique=False, nullable = False)
     desc_animal = db.Column(db.String(2000), unique=False, nullable = False)
     breed_animal = db.Column(db.String(2000), unique=False, nullable = False)
     status_animal = db.Column(db.String(20), unique=False, nullable=False)
     fact_animal = db.Column(db.String(2000), unique=False, nullable = True)
+    image_filename = db.Column(db.String, default=None, nullable=True)
+    image_url = db.Column(db.String, default=None, nullable=True)
 
     def __repr__(self):
         return "Animal('{}','{}','{}')".format(self.id_animal,self.name_animal,self.status_animal)
@@ -45,34 +54,16 @@ class Animal(db.Model):
 def home():
     return render_template("index.html")
 
-@app.route("/admin/config", methods=['GET', 'POST'])
-def animconfig():
-    return 0
-
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-def savePic(picture_data):
-    currid = len(Animal.query.all()) + 1
-    f_name, f_ext = os.path.splitext(picture_data)
-    picture_fn = str(currid) + f_ext
-    pic_path= os.path.join('static/img', picture_fn)
-    picture_data.save(pic_path)
-
-    return picture_fn
-
 @app.route('/addAnimal', methods = ['GET', 'POST'])
 def uploadAnimal():
     count = len(Animal.query.all())
     animForm = AnimalForm()
     if animForm.validate_on_submit():
-        if animForm.img.data:
-            picture_file = savePic(animForm.img.data)
-
         temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data)
+        filename = ihandle.images.save(request.files['img'])
+        url = ihandle.images.url(filename)
+            
         db.session.add(temp)
-        #try to add image here
         db.session.commit()
         flash('Animal created for {}!'.format(animForm.name_animal.data),'success')   
     return redirect("/admin")  
@@ -90,7 +81,7 @@ def animals():
 
 @app.route("/animals/<id>")
 def animal(id):
-    anim = Animal.query.get(1)
+    anim = Animal.query.get(id)
     return render_template("animal.html", animal=anim)
 
 
