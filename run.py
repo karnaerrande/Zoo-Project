@@ -14,6 +14,8 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
+from werkzeug.utils import secure_filename
+
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 app = Flask(__name__)
@@ -59,13 +61,17 @@ def uploadAnimal():
     count = len(Animal.query.all())
     animForm = AnimalForm()
     if animForm.validate_on_submit():
-        temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data)
-        filename = ihandle.images.save(request.files['img'])
-        url = ihandle.images.url(filename)
-            
+        #debug here
+        f = animForm.img.data
+        img_filename = secure_filename(f.filename)
+        f.save(os.path.join(app.root_path, 'static/img', img_filename))
+        temp = Animal(name_animal=animForm.name_animal.data,dist_animal=animForm.dist_animal.data,diet_animal=animForm.diet_animal.data,desc_animal=animForm.desc_animal.data,breed_animal=animForm.breed_animal.data,status_animal=animForm.status_animal.data,fact_animal=animForm.fact_animal.data, image_filename= img_filename,image_url="static/img/{}".format(img_filename))
         db.session.add(temp)
         db.session.commit()
         flash('Animal created for {}!'.format(animForm.name_animal.data),'success')   
+    else:
+        flash('Unable to create Animal', 'danger')
+
     return redirect("/admin")  
 
 @app.route("/admin")
