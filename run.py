@@ -2,7 +2,6 @@
 from __future__ import print_function
 from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-from image_handler import ImageHandler
 from forms import AnimalForm, ContactForm
 import smtplib
 
@@ -32,7 +31,6 @@ app.config['UPLOADED_IMAGES_DEST'] = '/static/img/'
 app.config['UPLOADED_IMAGES_URL'] = 'http://localhost:5000/static/img/'
 
 db = SQLAlchemy(app)
-ihandle = ImageHandler(app)
 
 
 class Animal(db.Model):

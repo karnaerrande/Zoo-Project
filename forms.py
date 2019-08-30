@@ -1,15 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, BooleanField, TextAreaField, StringField, SubmitField, validators
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-#import breaks image upload
-from image_handler import images
 from wtforms.validators import DataRequired, Length, Email
 from wtforms.fields.html5 import EmailField
 
 """
 Args:
     self(animal): animal object
-    fields(string[]): fields for the animal
+    fields(string[]): fields for the animala
     args(string[]): args for each field
 """
 
@@ -18,7 +16,7 @@ class AnimalForm(FlaskForm):
                                 validators=[DataRequired(), Length(min=2, max=30)])
     names =  StringField(u'Names',
                                 validators=[DataRequired(), Length(min=2, max=30)])
-    img = FileField('Animal Image', validators=[FileRequired(), FileAllowed(images, 'Images Only!')])
+    img = FileField()
     dist_animal = TextAreaField(u'Distribution', [validators.optional(), validators.length(max=400)])
     desc_animal = TextAreaField(u'Description', [validators.optional(), validators.length(max=400)])
 
