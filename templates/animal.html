@@ -4,19 +4,31 @@
 <div class="container-fluid">
   <h2>{{animal.name_animal}}</h2>
   <h3>Status: {{animal.status_animal}}</h3>
+  
   {% if animal.image_url %}
-    <img src="{{ animal.image_url }}" class="card-image">
+  <img src="{{ animal.image_url }}" class="card-image">
   {% else %}
-    <img src="static/img/default.png" class="card-image">
+  <img src="static/img/default.png" class="card-image">
   {% endif %}
-    <p>Description: {{animal.desc_animal}}</p>
-
+  
+  {% if animal.desc_animal %}
+  <p>Description: {{animal.desc_animal}}</p>
+  {%endif%}
+  
+  {% if animal.dist_animal %}
   <p>Distribution: {{animal.dist_animal}}</p>
-
+  {%endif%}
+  
+  {% if animal.diet_animal %}
   <p>Animal Diet: {{animal.diet_animal}}</p>
-
+  {%endif%}
+  
+  {% if animal.breed_animal %}
   <p>Breed: {{animal.breed_animal}}</p>
+  {%endif%}
 
+  {% if animal.fact_animal %}
   <p>Animal facts: {{animal.fact_animal}}</p>
+  {%endif%}
 </div>
 {% endblock %}
