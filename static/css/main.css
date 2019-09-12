@@ -90,3 +90,6 @@ html, body {
   padding-left: 10%;
   padding-top: 3%;
 }
+.navbar {
+  background-image: linear-gradient(lightslategray, white);
+}
