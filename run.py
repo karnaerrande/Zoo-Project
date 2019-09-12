@@ -82,7 +82,7 @@ def contact():
         server.login(gmail_user, gmail_password)
         server.sendmail(sent_from, to, email_text)
         server.close()
-        
+
         flash('Contact Form submitted by {}! We will get back to you as soon as we can!'.format(contactForm.name.data),'success')
         return redirect("/")
     else: # request.method == 'GET':
@@ -93,7 +93,7 @@ def events():
     creds = None
     # The file token.pickle stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
-    # time.
+    # time
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
             creds = pickle.load(token)
