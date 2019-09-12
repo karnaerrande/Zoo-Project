@@ -5,10 +5,10 @@
     <div class="row">
       {% for animal in allAnim%}
         <div class="col-sm-4 d-flex align-items-stretch" style="padding-bottom: 3%;">
-          <div class="card" style="padding:10%;">
+          <div class="card" style="padding:10%;width:450px;">
             <!--Replace line ten with boolean that checks if image exists-->
             {% if animal.image_url %}
-              <img src="{{ animal.image_url }}" class = "card-image">
+              <img src="{{ animal.image_url }}" class = "card-image" style = "width:60%;height:60%;">
             {% else %}
               <img src="static/img/default.png" class = "card-image">
             {% endif %}
