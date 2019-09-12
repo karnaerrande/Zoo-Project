@@ -35,12 +35,12 @@ db = SQLAlchemy(app)
 
 class Animal(db.Model):
     id_animal = db.Column(db.Integer, primary_key=True)
-    name_animal = db.Column(db.String(20), unique=False, nullable = False)
-    dist_animal = db.Column(db.String(2000), unique=False, nullable = False)
-    diet_animal = db.Column(db.String(2000), unique=False, nullable = False)
-    desc_animal = db.Column(db.String(2000), unique=False, nullable = False)
-    breed_animal = db.Column(db.String(2000), unique=False, nullable = False)
-    status_animal = db.Column(db.String(20), unique=False, nullable=False)
+    name_animal = db.Column(db.String(50), unique=False, nullable = True)
+    dist_animal = db.Column(db.String(2000), unique=False, nullable = True)
+    diet_animal = db.Column(db.String(2000), unique=False, nullable = True)
+    desc_animal = db.Column(db.String(2000), unique=False, nullable = True)
+    breed_animal = db.Column(db.String(2000), unique=False, nullable = True)
+    status_animal = db.Column(db.String(50), unique=False, nullable=True)
     fact_animal = db.Column(db.String(2000), unique=False, nullable = True)
     image_filename = db.Column(db.String, default=None, nullable=True)
     image_url = db.Column(db.String, default=None, nullable=True)
@@ -81,11 +81,14 @@ def admin():
 @app.route("/animals")
 def animals():
     allAnim=Animal.query.all()
+    for animal in allAnim:
+        print(animal.image_url)
     return render_template("animals.html", allAnim=allAnim)
 
 @app.route("/animals/<id>")
 def animal(id):
     anim = Animal.query.get(id)
+    print(anim.image_url)
     return render_template("animal.html", animal=anim)
 
 

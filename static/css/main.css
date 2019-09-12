@@ -81,6 +81,11 @@ html, body {
     background-attachment: scroll;
   }
 }
+
+.card-image{
+    width: 50%;
+    height: 50%;
+}
 .event {
   padding-left: 5%;
 }

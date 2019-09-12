@@ -4,17 +4,16 @@
   <div class="container-fluid">
     <div class="row">
       {% for animal in allAnim%}
-        <div class="col-sm-4 d-flex align-items-stretch">
-          <div class="card">
+        <div class="col-sm-4 d-flex align-items-stretch" style="padding-bottom: 3%;">
+          <div class="card" style="padding:10%;">
             <!--Replace line ten with boolean that checks if image exists-->
             {% if animal.image_url %}
-              <img src="{{ animal.image_url }}" style="width:40%;height:40%;">
+              <img src="{{ animal.image_url }}" class = "card-image">
             {% else %}
-              <img src="static/img/default.png" style="width:600px;height:450px;">
+              <img src="static/img/default.png" class = "card-image">
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{animal.name_animal}}</h5>
-              <p class="card-text">{{animal.desc_animal}}</p>
               <a href="/animals/{{animal.id_animal}}" class="btn btn-primary">Read more</a>
             </div>
           </div>
