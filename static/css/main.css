@@ -61,8 +61,7 @@ html, body {
     letter-spacing: 0.20ch;
 }
 #footer{
-    background-color:lightslategray;
-    color:white;
+    background-color:#b6eadb;
     letter-spacing: 0.2ch;
 }
 .nav-item{
@@ -80,6 +79,7 @@ html, body {
 }
 .card{
     padding:2%;
+    background-color:#b6eadb;
     text-align: center;
     display:inline-block;
 }
@@ -90,8 +90,10 @@ html, body {
 }
 
 .card-image{
-    width: 50%;
-    height: 50%;
+    max-width:230px;
+    max-height:95px;
+    width: auto;
+    height: auto;
 }
 .event {
   padding-left: 5%;

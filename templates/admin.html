@@ -18,7 +18,7 @@
         <th scope = "row"></th>
         <td>{{ animal.name_animal }}</td>
         <!--Update is a button that pops up a modal-->
-        <td>Update</td>
+        <td><a href="animals/{{animal.id_animal}}/update">Update</a></td>
         <td><a href="delete/{{animal.id_animal}}">Delete</a></td>
       </tr>
       {% endfor %}
