@@ -72,6 +72,21 @@ def uploadAnimal():
 
     return redirect("/admin")  
 
+@app.route("/delete/<id>")
+def delAnim(id):
+    anim = db.session.query(Animal).get(id)
+    db.session.delete(anim)
+    flash('Animal succesfully deleted', 'success')
+    return redirect("/admin")
+
+@app.route("/delete/<id>")
+def delete(id):
+    db.session.bind.execute('delete from animal where id_animal = ?', ['{}'.format(id)])
+    db.session.commit()
+    flash('Animal deleted','success')
+    return redirect("/admin")
+
+
 @app.route("/admin")
 def admin():
     allAnim=Animal.query.all()

@@ -1,8 +1,26 @@
+@font-face {
+    font-family: Hannari;
+    src: url("/static/Hannari.otf");
+  }
+  @font-face {
+    font-family: Harenosora;
+    src: url("/static/Harenosora.otf");
+  }
+  @font-face {
+    font-family: Kuduo;
+    src: url("/static/KUDUO.TTF");
+  }
+  @font-face {
+    font-family: Mutsuki;
+    src: url("/static/Mutsuki.ttf");
+  }
+  
 html, body {
     max-width: 100%;
     overflow-x: hidden;
     font-family: 'Roboto';
     margin: 0%;
+    background-color:#DEF2EC;
 }
 .bordered-table{
     border: 1px solid black;
@@ -99,4 +117,7 @@ html, body {
   padding-right: 5%;
   padding-left: 10%;
   padding-top: 3%;
+}
+.navbar{
+    background:transparent;
 }
