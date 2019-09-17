@@ -1,24 +1,13 @@
-@font-face {
-    font-family: Hannari;
-    src: url("/static/Hannari.otf");
-  }
-  @font-face {
-    font-family: Harenosora;
-    src: url("/static/Harenosora.otf");
-  }
-  @font-face {
-    font-family: Kuduo;
-    src: url("/static/KUDUO.TTF");
-  }
+
   @font-face {
     font-family: Mutsuki;
     src: url("/static/Mutsuki.ttf");
   }
-  
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
-    font-family: 'Roboto';
+    font-family: 'Mutsuki';
     margin: 0%;
     background-color:#DEF2EC;
 }
@@ -27,11 +16,11 @@ html, body {
 }
 
 #header{
-    font-family: 'Roboto';font-size: 15px;
+    font-family: 'Mutsuki';font-size: 15px;
 }
 
 #brand{
-    font-family: 'Roboto';font-size: 18px;
+    font-family: 'Mutsuki';font-size: 18px;
 }
 #img-logo{
     display: block;
@@ -41,28 +30,28 @@ html, body {
     padding-top:35%
 }
 #img-subtitle{
-    font-family: 'Roboto';font-size: 22px;
+    font-family: 'Mutsuki';font-size: 22px;
     padding:20%;
     letter-spacing: .5ch;
     color:white;
     text-align:center;
 }
 #sect-head{
-    font-family: 'Roboto';font-size: 22px;
+    font-family: 'Mutsuki';font-size: 22px;
     text-align: center;
     padding:5%;
     letter-spacing: 0.4ch;
 }
 #parallax-frame{
     text-align:center;
-    font-family: 'Roboto';font-size: 30px;
+    font-family: 'Mutsuki';font-size: 30px;
     letter-spacing: 0.05ch;
     line-height: 2;
     padding: 10%;
     color:white;
 }
 #content-frame{
-    font-family: 'Roboto';
+    font-family: 'Mutsuki';
     letter-spacing: 0.05ch;
     line-height: 2.5;
     padding:3%;
@@ -77,7 +66,7 @@ html, body {
     letter-spacing: 0.2ch;
 }
 .nav-item{
-    font-family: 'Roboto';font-size: 20px;
+    font-family: 'Mutsuki';font-size: 20px;
 }
 .parallax{
 
