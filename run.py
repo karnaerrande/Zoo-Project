@@ -2,7 +2,9 @@
 from __future__ import print_function
 from flask import Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
-from forms import AnimalForm, UpdateAnimalForm, ContactForm
+from flask_bcrypt import Bcrypt
+from flask_login import UserMixin, login_user, login_manager
+from forms import LoginForm, AnimalForm, UpdateAnimalForm, ContactForm
 import smtplib
 
 import datetime
@@ -31,22 +33,29 @@ app.config['UPLOADED_IMAGES_DEST'] = '/static/img/'
 app.config['UPLOADED_IMAGES_URL'] = 'http://localhost:5000/static/img/'
 
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
 
 
 class Animal(db.Model):
     id_animal = db.Column(db.Integer, primary_key=True)
-    name_animal = db.Column(db.String(50), unique=False, nullable=True)
-    dist_animal = db.Column(db.String(2000), unique=False, nullable=True)
-    diet_animal = db.Column(db.String(2000), unique=False, nullable=True)
-    desc_animal = db.Column(db.String(2000), unique=False, nullable=True)
-    breed_animal = db.Column(db.String(2000), unique=False, nullable=True)
-    status_animal = db.Column(db.String(50), unique=False, nullable=True)
-    fact_animal = db.Column(db.String(2000), unique=False, nullable=True)
+    names = db.Column(db.String, unique = False, nullable = True)
+    name_animal = db.Column(db.String, unique=False, nullable=True)
+    dist_animal = db.Column(db.String, unique=False, nullable=True)
+    diet_animal = db.Column(db.String, unique=False, nullable=True)
+    desc_animal = db.Column(db.String, unique=False, nullable=True)
+    breed_animal = db.Column(db.String, unique=False, nullable=True)
+    behavior_animal = db.Column(db.String, unique=False, nullable=True)
+    status_animal = db.Column(db.String, unique=False, nullable=True)
+    fact_animal = db.Column(db.String, unique=False, nullable=True)
     image_filename = db.Column(db.String, default=None, nullable=True)
     image_url = db.Column(db.String, default=None, nullable=True)
 
     def __repr__(self):
         return "Animal('{}','{}','{}')".format(self.id_animal, self.name_animal, self.status_animal)
+
+class AdminUser(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    password = db.Column(db.String(60), nullable = False)
 
 # frontend
 @app.route("/home")
@@ -55,76 +64,88 @@ def home():
     return render_template("index.html")
 
 
-@app.route('/addAnimal', methods=['GET', 'POST'])
-def uploadAnimal():
-    count = len(Animal.query.all())
-    animForm = AnimalForm()
-    if animForm.validate_on_submit():
-        # debug here
-        f = animForm.img.data
-        img_filename = secure_filename(f.filename)
-        f.save(os.path.join(app.root_path, 'static/img', img_filename))
-        temp = Animal(name_animal=animForm.name_animal.data, dist_animal=animForm.dist_animal.data, diet_animal=animForm.diet_animal.data, desc_animal=animForm.desc_animal.data,
-                      breed_animal=animForm.breed_animal.data, status_animal=animForm.status_animal.data, fact_animal=animForm.fact_animal.data, image_filename=img_filename, image_url="static/img/{}".format(img_filename))
-        db.session.add(temp)
-        db.session.commit()
-        flash('Animal created for {}!'.format(
-            animForm.name_animal.data), 'success')
-    else:
-        flash('Unable to create Animal', 'danger')
-
-    return redirect("/admin")
-
-
-@app.route("/animals/<id>/update", methods=['GET', 'POST'])
-def update_post(id):
-    anim = Animal.query.get_or_404(id)
-    form = UpdateAnimalForm()
-    if form.validate_on_submit():
-        anim.name_animal= form.name_animal.data
-        anim.names= form.names.data
-        anim.dist_animal= form.dist_animal.data
-        anim.desc_animal= form.desc_animal.data
-        anim.breed_animal= form.breed_animal.data
-        anim.diet_animal= form.diet_animal.data
-        anim.behavior_animal= form.behavior_animal.data
-        anim.status_animal= form.status_animal.data
-        anim.fact_animal= form.fact_animal.data
-
-        f = form.img.data
-        img_filename = secure_filename(f.filename)
-        f.save(os.path.join(app.root_path, 'static/img', img_filename))
-
-        flash('Animal has been successfully updated!', 'success')
-        return redirect("/animal/{}".format(id))
-    elif request.method == 'GET':
-        form.name_animal.data = anim.name_animal
-        form.names.data = anim.names
-        form.img.data = anim.img
-        form.dist_animal.data = anim.dist_animal
-        form.desc_animal.data = anim.desc_animal
-        form.breed_animal.data = anim.breed_animal
-        form.diet_animal.data = anim.diet_animal
-        form.behavior_animal.data = anim.behavior_animal
-        form.status_animal.data = anim.status_animal
-        form.fact_animal.data = anim.fact_animal
-    return render_template('update.html', animForm=form, legend='Update Animal', animid=id)
+#@app.route('/addAnimal', methods=['GET', 'POST'])
+#def uploadAnimal():
+#    count = len(Animal.query.all())
+#    animForm = AnimalForm()
+#    if animForm.validate_on_submit():
+#        # debug here
+#        f = animForm.img.data
+#        img_filename = secure_filename(f.filename)
+#        f.save(os.path.join(app.root_path, 'static/img', img_filename))
+#        temp = Animal(name_animal=animForm.name_animal.data, dist_animal=animForm.dist_animal.data, diet_animal=animForm.diet_animal.data, desc_animal=animForm.desc_animal.data,
+#                      breed_animal=animForm.breed_animal.data, status_animal=animForm.status_animal.data, fact_animal=animForm.fact_animal.data, image_filename=img_filename, image_url="static/img/{}".format(img_filename))
+#        db.session.add(temp)
+#        db.session.commit()
+#        flash('Animal created for {}!'.format(
+#            animForm.name_animal.data), 'success')
+#    else:
+#        flash('Unable to create Animal', 'danger')
+#
+#    return redirect("/admin")
 
 
-@app.route("/delete/<id>")
-def delAnim(id):
-    anim = Animal.query.get_or_404(id)
-    db.session.delete(anim)
-    db.session.commit()
-    flash('Animal succesfully deleted', 'success')
-    return redirect("/admin")
+#@app.route("/animals/<id>/update", methods=['GET', 'POST'])
+#def update_post(id):
+#    anim = Animal.query.get_or_404(id)
+#    form = UpdateAnimalForm()
+#    if form.validate_on_submit():
+#        anim.name_animal= form.name_animal.data
+#        anim.names= form.names.data
+#        anim.dist_animal= form.dist_animal.data
+#        anim.desc_animal= form.desc_animal.data
+#        anim.breed_animal= form.breed_animal.data
+#        anim.diet_animal= form.diet_animal.data
+#        anim.behavior_animal= form.behavior_animal.data
+#        anim.status_animal= form.status_animal.data
+#        anim.fact_animal= form.fact_animal.data
+#        
+#        if form.img.data:
+#            f = form.img.data
+#            img_filename = secure_filename(f.filename)
+#            f.save(os.path.join(app.root_path, 'static/img', img_filename))
+#
+#        flash('Animal has been successfully updated!', 'success')
+#        return redirect("/animal/{}".format(id))
+#    elif request.method == 'GET':
+#        form.name_animal.data = anim.name_animal
+#        form.names.data = anim.names
+#        
+#        form.dist_animal.data = anim.dist_animal
+#        form.desc_animal.data = anim.desc_animal
+#        form.breed_animal.data = anim.breed_animal
+#        form.diet_animal.data = anim.diet_animal
+#        form.behavior_animal.data = anim.behavior_animal
+#        form.status_animal.data = anim.status_animal
+#        form.fact_animal.data = anim.fact_animal
+#    return render_template('update.html', animForm=form, legend='Update Animal', animid=id)
 
 
-@app.route("/admin")
-def admin():
-    allAnim = Animal.query.all()
-    animForm = AnimalForm()
-    return render_template("admin.html", animForm=animForm, allAnim=allAnim)
+#@app.route("/delete/<id>")
+#def delAnim(id):
+#    anim = Animal.query.get_or_404(id)
+#    db.session.delete(anim)
+#    db.session.commit()
+#    flash('Animal succesfully deleted', 'success')
+#    return redirect("/admin")
+
+#@app.route("/login", methods =['GET', 'POST'])
+#def login():
+#    form = LoginForm()
+#    if form.validate_on_submit():
+#        user = AdminUser.query.all().first()
+#        if user and bcrypt.check_password_hash(user.password, form.password):
+#            login_user(user)
+#            return redirect("/admin")
+#        else:
+#            flash('Login Unsuccessful', 'danger')
+#    return render_template("login.html")
+
+#@app.route("/admin")
+#def admin():
+#    allAnim = Animal.query.all()
+#    animForm = AnimalForm()
+#    return render_template("admin.html", animForm=animForm, allAnim=allAnim)
 
 
 @app.route("/animals")
@@ -233,11 +254,9 @@ def events():
 def map():
     return render_template("map.html")
 
-
-@app.route("/trueAdmin")
-def trueAdmin():
-    return render_template("")
-
+#@login_manager.user_loader
+#def load_user(user_id):
+#    return AdminUser.query.get(int(user_id))
 
 if __name__ == '__main__':
     app.run(debug=True, host="localhost", port=5000, threaded=True)

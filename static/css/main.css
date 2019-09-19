@@ -90,9 +90,7 @@ html, body {
 }
 
 .card-image{
-    max-width:230px;
-    max-height:95px;
-    width: auto;
+    width: 100%;
     height: auto;
 }
 .event {

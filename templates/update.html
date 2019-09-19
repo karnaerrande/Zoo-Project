@@ -1,63 +1,65 @@
 {% extends "layout.html" %}
-{% block title %} Update: {{animal.name_animal}} {% endblock %}
+{% block title %} Update Animal {% endblock %}
 {% block content %}
-<form method="POST" action="/animal/{{ animid }}/update" enctype="multipart/form-data">
-    {{ animForm.hidden_tag() }}
-    <fieldset class="form-group">
+<div class="container">
+    <form method="POST" action="/animal/{{ animid }}/update" enctype="multipart/form-data">
+        {{ animForm.hidden_tag() }}
+        <fieldset class="form-group">
+
+            <div class="form-group">
+                {{animForm.name_animal.label(class="form-control-label")}}
+                {{animForm.name_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.names.label(class="form-control-label")}}
+                {{animForm.names(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.img.label(class="form-control-label")}}
+                {{animForm.img(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.dist_animal.label(class="form-control-label")}}
+                {{animForm.dist_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.desc_animal.label(class="form-control-label")}}
+                {{animForm.desc_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.breed_animal.label(class="form-control-label")}}
+                {{animForm.breed_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.diet_animal.label(class="form-control-label")}}
+                {{animForm.diet_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.behavior_animal.label(class="form-control-label")}}
+                {{animForm.behavior_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.status_animal.label(class="form-control-label")}}
+                {{animForm.status_animal(class="form-control form-control-lg")}}
+            </div>
+
+            <div class="form-group">
+                {{animForm.fact_animal.label(class="form-control-label")}}
+                {{animForm.fact_animal(class="form-control form-control-lg")}}
+            </div>
+        </fieldset>
 
         <div class="form-group">
-            {{animForm.name_animal.label(class="form-control-label")}}
-            {{animForm.name_animal(class="form-control form-control-lg")}}
+            {{animForm.submit(class="btn btn-outline-info")}}
         </div>
-
-        <div class="form-group">
-            {{animForm.names.label(class="form-control-label")}}
-            {{animForm.names(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.img.label(class="form-control-label")}}
-            {{animForm.img(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.dist_animal.label(class="form-control-label")}}
-            {{animForm.dist_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.desc_animal.label(class="form-control-label")}}
-            {{animForm.desc_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.breed_animal.label(class="form-control-label")}}
-            {{animForm.breed_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.diet_animal.label(class="form-control-label")}}
-            {{animForm.diet_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.behavior_animal.label(class="form-control-label")}}
-            {{animForm.behavior_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.status_animal.label(class="form-control-label")}}
-            {{animForm.status_animal(class="form-control form-control-lg")}}
-        </div>
-
-        <div class="form-group">
-            {{animForm.fact_animal.label(class="form-control-label")}}
-            {{animForm.fact_animal(class="form-control form-control-lg")}}
-        </div>
-    </fieldset>
-
-    <div class="form-group">
-        {{animForm.submit(class="btn btn-outline-info")}}
-    </div>
-</form>
+    </form>
+</div>
 {% endblock %}

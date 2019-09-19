@@ -2,10 +2,10 @@
 {% block title %}Animals{% endblock %}
 {% block content %}
   <div class="container-fluid">
-    <div class="row">
+    <div class="card-columns">
       {% for animal in allAnim%}
-        <div class="col-sm-4 d-flex align-items-stretch" style="padding-bottom: 3%;">
-          <div class="card" style="padding:2%;width:350px;">
+        
+          <div class="card" style="padding:2%;">
             <!--Replace line ten with boolean that checks if image exists-->
             {% if animal.image_url %}
               <img src="{{ animal.image_url }}" class = "card-image" style = "width:60%;height:60%;">
@@ -17,7 +17,7 @@
               <a href="/animals/{{animal.id_animal}}" class="btn btn-primary">Read more</a>
             </div>
           </div>
-        </div>
+        
       {% endfor %}
     </div>
   </div>
