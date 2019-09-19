@@ -32,6 +32,7 @@ app.config['UPLOADS_DEFAULT_URL'] = 'http://localhost:5000/static/img/'
 app.config['UPLOADED_IMAGES_DEST'] = '/static/img/'
 app.config['UPLOADED_IMAGES_URL'] = 'http://localhost:5000/static/img/'
 
+
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
@@ -167,8 +168,8 @@ def animal(id):
 def contact():
     contactForm = ContactForm()
     if request.method == 'POST':
-        gmail_user = 'Email Address'
-        gmail_password = 'Password'
+        gmail_user = 'applegateparkzoomerced@gmail.com'
+        gmail_password = 'MercedZoo'
 
         sent_from = gmail_user
         to = [gmail_user]
