@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %} {{animal.name_animal}} {% endblock %}
+{% block content %}
+<div class="container" style="text-align:center;">
+  <h2>{{animal.name_animal}}</h2>
+  <h3>Status: {{animal.status_animal}}</h3>
+  
+  {% if animal.image_filename %}
+  <img class = "rounded" src="/static/img/{{animal.image_filename}}">
+  {% else %}
+  <img src="/static/img/default.png">
+  {% endif %}
+  
+  {% if animal.desc_animal %}
+  <h4>Description</h4>
+  <p>{{animal.desc_animal}}</p>
+  {%endif%}
+  
+  {%if animal.behavior_animal%}
+  <h4>Behavior</h4>
+  <p>{{animal.behavior_animal}}</p>
+  {%endif%}
+
+  {% if animal.dist_animal %}
+  <h4>Distribution</h4>
+  <p>{{animal.dist_animal}}</p>
+  {%endif%}
+  
+  {% if animal.diet_animal %}
+  <h4>Diet</h4>
+  <p>{{animal.diet_animal}}</p>
+  {%endif%}
+  
+  {% if animal.breed_animal %}
+  <h4>Breed</h4>
+  <p>{{animal.breed_animal}}</p>
+  {%endif%}
+
+  {% if animal.fact_animal %}
+  <h4>Interesting Facts</h4>
+  <p>{{animal.fact_animal}}</p>
+  {%endif%}
+</div>
+{% endblock %}

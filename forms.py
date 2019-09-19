@@ -1,59 +1,61 @@
 from flask_wtf import FlaskForm
-from wtforms import Form, FileField, BooleanField, TextAreaField, StringField, SubmitField, validators
-from wtforms.validators import DataRequired, Length
+from wtforms import Form, PasswordField, BooleanField, TextAreaField, StringField, SubmitField, validators
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+from wtforms.validators import EqualTo,DataRequired, Length, Email
 from wtforms.fields.html5 import EmailField
 
-"""
-Args:
-    self(animal): animal object
-    fields(string[]): fields for the animal
-    args(string[]): args for each field
-"""
-class Animal:
-    def _init_(self, name, img_url, dist, desc, breeding, diet, behavior, status, fact):
-        #TODO: Implement
-        return 0
+
 
 class AnimalForm(FlaskForm):
     name_animal = StringField(u'Animal Name',
-                                validators=[DataRequired(), Length(min=2, max=30)])
+                                validators=[validators.optional(),Length(min=2, max=100)])
     names =  StringField(u'Names',
-                                validators=[DataRequired(), Length(min=2, max=30)])
-    img_url = FileField()
-    dist_animal = TextAreaField(u'Distribution', [validators.optional(), validators.length(max=400)])
-    desc_animal = TextAreaField(u'Description', [validators.optional(), validators.length(max=400)])
+                                validators=[validators.optional(),Length(min=2, max=100)])
+    img = FileField(validators=[validators.optional()])
+    dist_animal = TextAreaField(u'Distribution', [validators.optional(), validators.length(max=2000)])
+    desc_animal = TextAreaField(u'Description', [validators.optional(), validators.length(max=2000)])
 
-    breed_animal = TextAreaField(u'Breeding', [validators.optional(), validators.length(max=1000)])
-    diet_animal = TextAreaField(u'Diet', [validators.optional(), validators.length(max=300)])
-    behavior_animal = TextAreaField(u'Behavior', [validators.optional(), validators.length(max=400)])
+    breed_animal = TextAreaField(u'Breeding', [validators.optional(), validators.length(max=2000)])
+    diet_animal = TextAreaField(u'Diet', [validators.optional(), validators.length(max=2000)])
+    behavior_animal = TextAreaField(u'Behavior', [validators.optional(), validators.length(max=2000)])
     status_animal = StringField(u'Animal Status',
-                                validators=[DataRequired(), Length(min=2, max=30)])
+                                validators=[validators.optional(), Length(min=2, max=100)])
 
-    fact_animal = TextAreaField(u'Fact', [validators.optional(), validators.length(max=300)])
+    fact_animal = TextAreaField(u'Fact', [validators.optional(), validators.length(max=2000)])
 
     submit = SubmitField('Post')
 
+class UpdateAnimalForm(FlaskForm):
+    name_animal = StringField(u'Animal Name',
+                                validators=[validators.optional(),Length(min=2, max=100)])
+    names =  StringField(u'Names',
+                                validators=[validators.optional(),Length(min=2, max=100)])
+    img = FileField()
+    dist_animal = TextAreaField(u'Distribution', [validators.optional(), validators.length(max=2000)])
+    desc_animal = TextAreaField(u'Description', [validators.optional(), validators.length(max=2000)])
 
-    def validate_image(form, field):
-        if field.data:
-            field.data = re.sub(r'[^a-z0-9_.-]', '_', field.data)
+    breed_animal = TextAreaField(u'Breeding', [validators.optional(), validators.length(max=2000)])
+    diet_animal = TextAreaField(u'Diet', [validators.optional(), validators.length(max=2000)])
+    behavior_animal = TextAreaField(u'Behavior', [validators.optional(), validators.length(max=2000)])
+    status_animal = StringField(u'Animal Status',
+                                validators=[validators.optional(), Length(min=2, max=100)])
 
-    def upload(request):
-        form = UploadForm(request.POST)
+    fact_animal = TextAreaField(u'Fact', [validators.optional(), validators.length(max=2000)])
 
-        if form.image.data:
-            image_data = request.FILES[form.image.name].read()
-            open(os.path.join(UPLOAD_PATH, form.image.data), 'w').write(image_data)
-
-
+    submit = SubmitField('Post')
 
 class ContactForm(FlaskForm):
     name = StringField('Your name', validators=[DataRequired(), Length(min=2, max=40)])
-
-    # email = StringField("Your email",  validators=[DataRequired(), Email("This field requires a valid email address")])
-    # email = EmailField('Your email', validators=[DataRequired(), Email("This field requires a valid email address")])
+    email = EmailField('Your email', validators=[DataRequired(), Email("This field requires a valid email address")])
     subject = StringField('Subject', validators=[DataRequired(), Length(min=2, max=40)])
 
     message = TextAreaField('Message', validators=[DataRequired()]);
 
     submit = SubmitField('Post Contact')
+
+
+class LoginForm(FlaskForm):
+    password = PasswordField('Password', validators = [DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password')])
+
+    submit = SubmitField('Log in')
