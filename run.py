@@ -3,7 +3,6 @@ from __future__ import print_function
 from flask import jsonify, Flask, render_template, request, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-from flask_login import UserMixin, login_user, login_manager
 from forms import LoginForm, AnimalForm, UpdateAnimalForm, ContactForm
 import smtplib
 
