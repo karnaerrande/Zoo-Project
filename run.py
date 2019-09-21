@@ -83,7 +83,7 @@ def uploadAnimal(mypass):
             f = animForm.img.data
             img_filename = secure_filename(f.filename)
             f.save(os.path.join(app.root_path, 'static/img', img_filename))
-            temp = Animal(name_animal=animForm.name_animal.data, dist_animal=animForm.dist_animal.data, diet_animal=animForm.diet_animal.data, desc_animal=animForm.desc_animal.data,
+            temp = Animal(name_animal=animForm.name_animal.data,names=animForm.names.data, behavior_animal=animForm.behavior_animal.data, dist_animal=animForm.dist_animal.data, diet_animal=animForm.diet_animal.data, desc_animal=animForm.desc_animal.data,
                           breed_animal=animForm.breed_animal.data, status_animal=animForm.status_animal.data, fact_animal=animForm.fact_animal.data, image_filename=img_filename, image_url="static/img/{}".format(img_filename))
             db.session.add(temp)
             db.session.commit()
