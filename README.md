@@ -43,7 +43,7 @@ Or replace 'localhost' with your IPv4 address to access the site from other devi
 
 At the bottom of each page is a button labeled "Admin Portal"
 
-Once at the following page, enter the password you set "MercedZoo2019" as default 
+Once at the following page, enter the password you set or "MercedZoo2019" as default 
 
 ### How to change the admin password
 
