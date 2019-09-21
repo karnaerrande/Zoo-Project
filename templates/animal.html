@@ -3,7 +3,8 @@
 {% block content %}
 <div class="container" style="text-align:center;">
   <h2>{{animal.name_animal}}</h2>
-  <h3>Status: {{animal.status_animal}}</h3>
+  <h3>{{animal.names}}</h3>
+  <h5>Status: {{animal.status_animal}}</h5>
   
   {% if animal.image_filename %}
   <img class = "rounded" src="/static/img/{{animal.image_filename}}">
