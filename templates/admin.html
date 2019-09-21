@@ -18,8 +18,8 @@
         <th scope = "row"></th>
         <td>{{ animal.name_animal }}</td>
         <!--Update is a button that pops up a modal-->
-        <td><a href="animals/{{animal.id_animal}}/update">Update</a></td>
-        <td><a href="delete/{{animal.id_animal}}">Delete</a></td>
+        <td><a href="/animals/{{animal.id_animal}}/update/{{password}}">Update</a></td>
+        <td><a href="/delete/{{animal.id_animal}}/{{password}}">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -42,7 +42,7 @@
           </div>
 
           <div class="modal-body">
-            <form method="POST" action="/addAnimal" enctype="multipart/form-data">
+            <form method="POST" action="/addAnimal/{{password}}" enctype="multipart/form-data">
               {{ animForm.hidden_tag() }}
               <fieldset class="form-group">
 
