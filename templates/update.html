@@ -2,7 +2,7 @@
 {% block title %} Update Animal {% endblock %}
 {% block content %}
 <div class="container">
-    <form method="POST" action="/animal/{{ animid }}/update" enctype="multipart/form-data">
+    <form method="POST" action="/animals/{{ animid }}/update/{{password}}" enctype="multipart/form-data">
         {{ animForm.hidden_tag() }}
         <fieldset class="form-group">
 
