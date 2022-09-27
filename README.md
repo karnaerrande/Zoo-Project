@@ -7,7 +7,7 @@ This project was started to develop a Web Application for Applegate Park Zoo at 
 In order to store a local copy of the repository, clone it into the desired directory with the line
 
 ```
-git clone https://github.com/kerrande/Zoo-Project.git
+git clone https://github.com/karnaerrande/Zoo-Project.git
 ```
 
 ### Prerequisites
